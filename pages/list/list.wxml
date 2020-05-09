@@ -1,0 +1,17 @@
+<!--pages/list/list.wxml-->
+<import src="/utils/htmlStatus/index.wxml" />
+<wxs src="../../utils/filter.wxs" module="filter" />
+<view class="container">
+  <template is="htmlStatus" data="{{...htmlStatus}}" />
+  <view class="li_box" wx:for="{{data_list}}" wx:for-item="item" bindtap="jump" data-url="/pages/details/details">
+    <view>
+      <view class="li_tit oh1">1,清远市清城区八零后汽车服务中心心心心心心心心</view>
+      <view class="li_h2 oh1">终端号：5159014</view>
+      <view class="li_h2 oh1">商户编号：10000000005159014</view>
+      <view class="li_add oh3">商户地址：清远市清城区八零后汽车服务中心心心心心心心心</view>
+    </view>
+    <view class="li_go">
+      <image src="/static/images/li_go.jpg"></image>
+    </view>
+  </view>
+</view>

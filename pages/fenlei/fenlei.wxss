@@ -1,0 +1,31 @@
+/* pages/fenlei/fenlei.wxss */
+.container{
+  width: 100%;
+  min-height: 100vh;
+  background: #fffeff;
+  padding: 30rpx 47rpx;
+}
+.index_box{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.index_li{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f2f2f4;
+  width: 310rpx;
+  height: 200rpx;
+  justify-content: space-around;
+  padding: 40rpx 0;
+  color: #323336;
+  font-size: 27rpx;
+margin-bottom: 30rpx;
+}
+.index_li image{
+  width: 130rpx;
+  height: 130rpx;
+  
+}

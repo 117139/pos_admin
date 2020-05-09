@@ -1,0 +1,195 @@
+<!--pages/details/details.wxml-->
+<import src="/utils/htmlStatus/index.wxml" />
+<wxs src="../../utils/filter.wxs" module="filter" />
+<view class="container">
+  <template is="htmlStatus" data="{{...htmlStatus}}" />
+  <view class="xq_box1" style="background-image:url('/static/images/tx.jpg')">
+    <view class="xq_box1_msg">
+    <view class="xq_add">
+      <view class="oh2" style="background-image:url('/static/images/dianpu.png')">远市清城区八零后汽车服务中心</view>
+      <view class="oh2" style="background-image:url('/static/images/dizhi.png')">{{activity_location}}</view>
+    </view>
+    <view class="tel_btn" bindtap="call" data-tel="18300000000" style="background-image:url('/static/images/4_03.jpg')"></view>
+    </view>
+  </view>
+  <view class="xq_box2">
+    <view>
+      <text wx:if="{{ldata}}" bindtap="again_getLocation">点击选择商户新位置</text>
+      <!-- <text wx:if="{{ldata}}" bindtap="getLocation">点击选择商户新位置</text> -->
+      <button wx:else open-type="openSetting" bindopensetting='handler'>点击选择商户新位置</button>
+    </view>
+    <view>
+       <text wx:if="{{ldata}}" bindtap="getLocation">启用导航</text>
+      <button wx:else open-type="openSetting" bindopensetting='handler'>启用导航</button>
+    </view>
+  </view>
+  
+  <view class="xq_box3">
+    <view class="xq_title">
+      <image src="/static/images/4_06.jpg"></image>商品信息
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1 c5099f7">商户编号：1000000000515904</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">银行经办人：（无）</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">入账行号：1000000000515904</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">银行卡号：1000000000515904</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">收单行号：1000000000515904</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">收单行：1000000000515904</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">银行卡号：1000000000515904</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">内手续费：0.498%扣率，19元封顶</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">外手续费：1.50%扣率</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">装机联系人：邹卫华</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">商户法人：邹卫华</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">商户属性：对公</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">法人身份证：14****************00</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">维护公司：广东清远分公司</view>
+    </view>
+  </view>
+  <view class="xq_box3">
+    <view class="xq_title">
+      <image src="/static/images/4_06.jpg"></image>商户资质
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1 c5099f7">有营业执照</view>
+      <view class="xq_li_xbox"></view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">有协议</view>
+      <view class="xq_li_xbox cur"></view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">有税务登记证</view>
+      <view class="xq_li_xbox"></view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">有调查表</view>
+      <view class="xq_li_xbox"></view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">有账号复印件</view>
+      <view class="xq_li_xbox"></view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">有身份证复印件</view>
+      <view class="xq_li_xbox"></view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">有租赁合同</view>
+      <view class="xq_li_xbox"></view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">有转租赁合同</view>
+      <view class="xq_li_xbox"></view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">有业务授权委托书</view>
+      <view class="xq_li_xbox"></view>
+    </view>
+  </view>
+  <view class="xq_box3">
+    <view class="xq_title">
+      <image src="/static/images/4_06.jpg"></image>终端信息
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1 c5099f7">终端号：1000000000515904</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">机身固话：0489754654</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">机型编码：1000000000515904</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">版本号：1000000000515904</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">机型：1000000000515904</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">机身号：1000000000515904</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">押金：0</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">通讯费：0</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">键盘类型/底座类型：G101</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">键盘类型/底座类型编号：G101</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">键盘号：G101</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">密钥号：G101</view>
+    </view>
+    <view class="xq_li_msg"> 
+      <view class="xd"></view>
+      <view class="oh1 flex_1">Set机人员：曾佑健</view>
+    </view>
+  </view>
+</view>

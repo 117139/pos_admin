@@ -1,0 +1,20 @@
+<!--pages/fenlei/fenlei.wxml-->
+<import src="/utils/htmlStatus/index.wxml" />
+<wxs src="../../utils/filter.wxs" module="filter" />
+<view class="container">
+<template is="htmlStatus" data="{{...htmlStatus}}" />
+	<view class="index_box boxsiz">
+    <view class="index_li" wx:for="{{index_li}}" wx:for-item="item" bindtap="jump" data-url="{{item.url}}">
+      <image src="{{item.img}}"></image>
+      <text>{{item.name}}</text>
+    </view>
+    
+  </view>
+	<!-- <view class="zxkf_btn">
+		<button open-type="contact" bindcontact="kffuc"></button>
+		<image src="../../static/images/zxkf.png"></image>
+	</view> -->
+</view>
+
+
+
