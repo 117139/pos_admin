@@ -6,9 +6,12 @@ Page({
     latitude: 0,//地图初次加载时的纬度坐标
     longitude: 0, //地图初次加载时的经度坐标
     name:"", //选择的位置名称
-    shownum:0
+    shownum:1
   },
   onLoad: function () {
+    this.setData({
+      shownum:1
+    })
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
       key: 'FORBZ-KIPEF-WECJR-NFZKA-MREDV-FCF3O'

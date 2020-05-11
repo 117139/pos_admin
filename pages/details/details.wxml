@@ -4,22 +4,29 @@
 <view class="container">
   <template is="htmlStatus" data="{{...htmlStatus}}" />
   <view class="xq_box1" style="background-image:url('/static/images/tx.jpg')">
+    <image class="xq_box1_bg" src="/static/images/tx.jpg"></image>
     <view class="xq_box1_msg">
     <view class="xq_add">
-      <view class="oh2" style="background-image:url('/static/images/dianpu.png')">远市清城区八零后汽车服务中心</view>
-      <view class="oh2" style="background-image:url('/static/images/dizhi.png')">{{activity_location}}</view>
+      <view class="oh2" >
+        <image src="/static/images/dianpu.png"></image>
+        远市清城区八零后汽车服务中心</view>
+      <view class="oh2">
+      <image src="/static/images/dizhi.png"></image>
+      {{activity_location}}</view>
     </view>
-    <view class="tel_btn" bindtap="call" data-tel="18300000000" style="background-image:url('/static/images/4_03.jpg')"></view>
+    <view class="tel_btn" bindtap="call" data-tel="18300000000" style="background-image:url('/static/images/4_03.jpg')">
+      <image src="/static/images/4_03.jpg"></image>
+    </view> 
     </view>
   </view>
   <view class="xq_box2">
     <view>
-      <text wx:if="{{ldata}}" bindtap="again_getLocation">点击选择商户新位置</text>
-      <!-- <text wx:if="{{ldata}}" bindtap="getLocation">点击选择商户新位置</text> -->
+      <view wx:if="{{ldata}}" bindtap="getLocation1">点击选择商户新位置</view>
+      <!-- <text wx:if="{{ldata}}" bindtap="again_getLocation">点击选择商户新位置</text> -->
       <button wx:else open-type="openSetting" bindopensetting='handler'>点击选择商户新位置</button>
     </view>
     <view>
-       <text wx:if="{{ldata}}" bindtap="getLocation">启用导航</text>
+       <view wx:if="{{ldata}}" bindtap="getLocation">启用导航</view>
       <button wx:else open-type="openSetting" bindopensetting='handler'>启用导航</button>
     </view>
   </view>

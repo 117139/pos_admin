@@ -13,6 +13,7 @@ Page({
   data: {
     type: '',
     activity_location: '',
+    location:''
   },
 
   /**
@@ -39,7 +40,8 @@ Page({
     if (options.address != null && options.address != '') {
       //设置变量 address 的值
       this.setData({
-        address: options.address
+        address: options.address,
+        location: options.location
       });
     } else {
       // 实例化API核心类
@@ -51,9 +53,11 @@ Page({
       // 调用接口
       qqmapsdk.reverseGeocoder({
         success: function (res) {
+          console.log(res);
           console.log(res.result.address);
           that.setData({
             // address: res.result.address,
+            location: res.result.location,
             activity_location: res.result.address
           });
           // console.log(that.data.address);
@@ -347,6 +351,30 @@ Page({
 
   },
   getLocation: function () {
+    let that =this
+    let plugin = requirePlugin('routePlan');
+    let key = 'WOUBZ-TTHHR-OMAWI-WC5F6-XPB5H-CHFRU';  //使用在腾讯位置服务申请的key
+    let referer = 'pos机进销存管理系统';   //调用插件的app的名称
+    let endPoint = JSON.stringify({  //终点
+      'name': that.data.activity_location,
+      'latitude': that.data.location.lat,
+      'longitude': that.data.location.lng
+    });
+    console.log(endPoint)
+    wx.navigateTo({
+      url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
+    });
+    return
+    // wx.navigateTo({
+    //   url: '/pages/addLocation/addLocation',
+    // });
+    this.moveToLocation()
+    wx.navigateTo({
+      url: "/pages/position/position"
+    });
+  },
+  getLocation1: function () {
+    
     // wx.navigateTo({
     //   url: '/pages/addLocation/addLocation',
     // });
