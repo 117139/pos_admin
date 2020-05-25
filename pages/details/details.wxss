@@ -193,3 +193,10 @@ button{
   align-items: center;
   justify-content: center; 
 }
+checkbox{
+  transform:scale(0.5);
+}
+.checkbox{
+  font-size: 28rpx;
+  margin-right: 30rpx;
+}
