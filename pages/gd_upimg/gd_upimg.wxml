@@ -1,0 +1,29 @@
+<!--pages/gd_upimg/gd_upimg.wxml-->
+<view>
+  <view class="h_tab">
+    <view class="h_tab_li {{s_type==0?'cur':''}}" bindtap="ss_type" data-type="0">门头照</view>
+    <view class="h_tab_li {{s_type==1?'cur':''}}" bindtap="ss_type" data-type="1">完成小票</view>
+  </view>
+  <view class="fw_list">
+    <!-- <view class="fuwu_li">
+      <view class="d1">上传商品图片</view>
+      <view class="fw_msg">
+
+      </view>
+    </view> -->
+    <view class="imgbox mb20">
+      <view class="addimg1" wx:for="{{imgb}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" data-idx="{{idx}}" bindtap="imgdel">
+        <!-- <image src="{{filter.imgIP(item)}}" data-src="{{filter.imgIP(item)}}" mode="aspectFill"></image> -->
+        <image src="{{item}}" data-src="{{item}}" mode="aspectFill"></image>
+      </view>
+
+      <view wx:if="{{imgb.length<9}}" class="addimg" bindtap="scpic">
+
+        <image src="../../static/images/upimg1.jpg"></image>
+      </view>
+    </view>
+
+
+  </view>
+  <button class="sub_btn" bindtap="sub">提交</button>
+</view>

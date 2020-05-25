@@ -13,7 +13,26 @@ Page({
   data: {
     type: '',
     activity_location: '',
-    location:''
+    location:'',
+    yc_data: [
+      { name: 12 },
+      { name: 13 },
+      { name: 142 },
+      { name: 1233 },
+      { name: 15 },
+
+    ],
+    indexp1: 0,
+    indexp2: 0,
+    indexp3: 0,
+    indexp4: 0,
+    indexp5:0,
+    num1: '',
+    num2: '',
+    num3: '',
+    num4: '',
+    num5: '',
+
   },
 
   /**
@@ -142,7 +161,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -413,5 +432,66 @@ Page({
         console.log(err)
       }
     });
+  },
+  get_val_li(e) {
+    var ptype = e.currentTarget.dataset.ptype
+    console.log(e.detail)
+    if (ptype == 1) {
+      this.setData({
+        num1: e.detail.value,
+      })
+    }
+    if (ptype == 2) {
+      this.setData({
+        num2: e.detail.value,
+      })
+    }
+    if (ptype == 3) {
+      this.setData({
+        num3: e.detail.value,
+      })
+    }
+    if (ptype == 4) {
+      this.setData({
+        num4: e.detail.value,
+      })
+    }
+    if (ptype == 5) {
+      this.setData({
+        num5: e.detail.value,
+      })
+    }
+  },
+  bindPickerChange1: function (e) {
+    console.log(e.currentTarget.dataset.ptype)
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    var ptype = e.currentTarget.dataset.ptype
+    var idx = e.detail.value
+    if (ptype == 1) {
+      this.setData({
+        indexp1: idx,
+      })
+    }
+    if (ptype == 2) {
+      this.setData({
+        indexp2: idx,
+      })
+    }
+    if (ptype == 3) {
+      this.setData({
+        indexp3: idx,
+      })
+    }
+    if (ptype == 4) {
+      this.setData({
+        indexp4: idx,
+      })
+    }
+    if (ptype == 5) {
+      this.setData({
+        indexp5: idx,
+      })
+    }
+    // this.getgoods(idx, this.data.fw_data[idx].id)
   },
 })

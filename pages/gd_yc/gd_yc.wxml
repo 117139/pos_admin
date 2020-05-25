@@ -1,0 +1,20 @@
+<!--pages/gd_yc/gd_yc.wxml-->
+<view>
+  <picker class="w100" bindchange="bindPickerChange" value="{{index}}" range="{{yc_data}}" range-key='name'>
+    <view class="cz_li">
+      <view class="cz_tit c5099f7">异常类型:{{yc_data[index].name}}</view>
+      <view>
+        <text class="iconfont icon-next fz28"></text>
+      </view>
+    </view>
+  </picker>
+  <picker class="w100" bindchange="bindPicker1Change" value="{{index1}}" range="{{jb_data}}" range-key='name'>
+    <view class="cz_li">
+      <view class="cz_tit c5099f7">经办方式:{{jb_data[index1].name}}</view>
+      <view>
+        <text class="iconfont icon-next fz28"></text>
+      </view>
+    </view>
+  </picker>
+  <button class="sub_btn" bindtap="sub">提交</button>
+</view>

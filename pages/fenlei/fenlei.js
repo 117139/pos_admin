@@ -11,13 +11,13 @@ Page({
       {
         name: '开通商户账号',
         img: '/static/images/3_03.jpg',
-        url: '/pages/list/list',
+        url: '/pages/list/list?type=200',
         type: '2'
       },
       {
         name: '坐标手机',
         img: '/static/images/3_05.jpg',
-        url: '/pages/list/list',
+        url: '/pages/list/list?type=201',
         type: '2'
       },
       {
@@ -26,30 +26,30 @@ Page({
         url: '/pages/list/list',
         type: '2'
       },
-      {
-        name: '杉众耗材配送',
-        img: '/static/images/3_10.jpg',
-        url: '/pages/list/list',
-        type: '2'
-      },
+      // {
+      //   name: '杉众耗材配送',
+      //   img: '/static/images/3_10.jpg',
+      //   url: '/pages/list/list',
+      //   type: '2'
+      // },
       {
         name: '修改商户信息',
         img: '/static/images/3_13.jpg',
-        url: '/pages/list/list',
+        url: '/pages/list/list?type=204',
         type: '2'
       },
       {
         name: '新增维护单',
         img: '/static/images/3_14.jpg',
-        url: '/pages/list/list',
+        url: '/pages/list_new/list_new',
         type: '2'
       },
-      {
-        name: '商圈信息',
-        img: '/static/images/3_17.jpg',
-        url: '/pages/list/list',
-        type: '2'
-      }
+      // {
+      //   name: '商圈信息',
+      //   img: '/static/images/3_17.jpg',
+      //   url: '/pages/list/list',
+      //   type: '2'
+      // }
 
     ],
     fl_cur:0,

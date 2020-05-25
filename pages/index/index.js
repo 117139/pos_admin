@@ -12,18 +12,18 @@ Page({
     homeTeacher: '',
     homeVideo: '',
     index_li:[
-      {
-        name: '未达标商户',
-        img: '/static/images/1_03.jpg',
-        url: '/pages/list/list',
-        type: '1'
-      },
-      {
-        name: '达标商户',
-        img: '/static/images/1_05.jpg',
-        url: '/pages/list/list',
-        type: '2'
-      },
+      // {
+      //   name: '未达标商户',
+      //   img: '/static/images/1_03.jpg',
+      //   url: '/pages/list/list',
+      //   type: '1'
+      // },
+      // {
+      //   name: '达标商户',
+      //   img: '/static/images/1_05.jpg',
+      //   url: '/pages/list/list',
+      //   type: '2'
+      // },
       {
         name: '巡机单',
         img: '/static/images/1_09.jpg',

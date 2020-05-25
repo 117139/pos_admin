@@ -1,0 +1,25 @@
+/* pages/gd_yc/gd_yc.wxss */
+.cz_li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100rpx;
+  padding: 0 28rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  border-bottom: 1px solid #eee;
+}
+.cz_tit{
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sub_btn{
+  width: 600rpx;
+  margin:50rpx auto;
+  background: #1AAD19;
+  color: #fff;
+  font-size: 30rpx;
+}

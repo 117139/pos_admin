@@ -1,11 +1,17 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/details/details",
+    "pages/list_new/list_new",
+    "pages/fenlei/fenlei",
+    "pages/shanghu_set/shanghu_set",
+    "pages/kaitong/kaitong",
     "pages/list/list",
+    "pages/zuobiao/zuobiao",
+    "pages/details/details",
+    "pages/gd_upimg/gd_upimg",
+    "pages/gd_yc/gd_yc",
     "pages/position/position",
    
-    "pages/fenlei/fenlei",
     "pages/login/login",
     "pages/index1/index",
     "pages/logs/logs"
@@ -30,7 +36,7 @@
       },
       {
         "pagePath": "pages/fenlei/fenlei",
-        "text": "分类",
+        "text": "菜单",
         "iconPath": "/static/images/btn2.png",
         "selectedIconPath": "/static/images/btn21.png"
       }

@@ -1,4 +1,7 @@
 /* pages/details/details.wxss */
+.container{
+  padding-bottom: 110rpx;
+}
 .xq_box1{
   width: 100%;
   height: 500rpx;
@@ -133,4 +136,60 @@ button{
 .xq_li_xbox.cur{
   border: 5rpx solid #FFDA2E;
   background: #FFDA2E;
+}
+.cz_li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100rpx;
+  padding: 0 28rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  border-top: 1px solid #eee;
+}
+
+
+.pj_li{
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}
+.pj_num{
+  display: flex;
+  align-items: center;
+  margin-left: 20rpx;
+}
+.pj_num input{
+  min-width: 0;
+  width: 100rpx;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  margin-left: 10rpx;
+}
+.pj_tit{
+  margin-right: 20rpx;
+}
+.pj_name{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 10rpx;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+.cz_btn{
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100rpx;
+  font-size: 28rpx;
+  color: #fff;
+  background:#1AAD19;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
 }

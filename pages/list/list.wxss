@@ -1,4 +1,7 @@
 /* pages/list/list.wxss */
+.container{
+  padding-top: 100rpx;
+}
 .li_box{
   width: 100%;
   padding: 30rpx 40rpx;
@@ -36,4 +39,35 @@ font-size: 22rpx;
   color: #969696;
   font-weight: bold;
   line-height: 35rpx;
+}
+
+
+
+.index_box1{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #101426;
+  padding: 15rpx 29rpx;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+}
+
+
+.sousuo_box{
+  flex: 1;
+  height:55rpx;
+  background:rgba(255,255,255,1);
+  border-radius:28px;
+  font-size: 24rpx;
+  color: #BBBBBB;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  display: flex;
+  align-items: center;
+}
+.sousuo_box text{
+  margin-right: 20rpx;
 }

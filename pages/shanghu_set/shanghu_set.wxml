@@ -1,0 +1,51 @@
+<!--pages/details/details.wxml-->
+<import src="/utils/htmlStatus/index.wxml" />
+<wxs src="../../utils/filter.wxs" module="filter" />
+<view class="container">
+  <template is="htmlStatus" data="{{...htmlStatus}}" />
+
+  <view class="xq_box3">
+    <view class="xq_title">
+      <image src="/static/images/4_06.jpg"></image>商户信息
+    </view>
+    <view class="xq_li_msg">
+      <view class="xd"></view>
+      <view class="oh1 flex_1 c5099f7">终端号：1000000000515904</view>
+    </view>
+    <view class="xq_li_msg">
+      <view class="xd"></view>
+      <view class="oh1 flex_1 c5099f7">商户编号：1000000000515904</view>
+    </view>
+    <view class="xq_li_msg">
+      <view class="xd"></view>
+      <view class="oh1 flex_1">商户名称：中山市小榄镇商行</view>
+    </view>
+    <view class="xq_li_msg">
+      <view class="xd"></view>
+      <view class=" flex_1">商户地址：中山市小榄镇商行九州路77号中心二期一层108号商铺</view>
+    </view>
+  </view>
+  
+
+  <view class="xq_box3">
+    <view class="xq_title">
+      <image src="/static/images/4_06.jpg"></image>收集坐标
+    </view>
+    <view class="xq_li_msg">
+      <view class="xd"></view>
+      <view class=" flex_1 dis_flex aic">
+        <view class="set_tit">联系人：</view> 
+        <view class="zb_v"  ><input value='{{uname}}' bindinput="get_val"></input></view>
+      </view>
+    </view>
+    <view class="xq_li_msg">
+      <view class="xd"></view>
+      <view class=" flex_1 dis_flex aic">
+        <view  class="set_tit">联系手机： </view>
+        <view class="zb_v"  ><input value='{{utel}}' type="number" bindinput="get_val1"></input></view>
+      </view>
+    </view>
+    
+  </view>
+  <view class="cz_btn" bindtap="sub">提交</view>
+</view>
