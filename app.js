@@ -1,7 +1,7 @@
 //app.js
 App({
-	IPurl: 'https://huayingworld.800123456.top/',
-	IPurl1:'https://huayingworld.800123456.top/',
+	IPurl: 'http://pos.a.800123456.top/',
+	IPurl1:'http://pos.a.800123456.top/',
 	onLaunch: function() {
 		let that=this
 		wx.removeStorageSync('userInfo')
@@ -22,7 +22,6 @@ App({
 							if(!that.globalData.userInfo){
 							
 							}else{
-                return
 		            wx.login({
 		              success: function (res) {
 		                // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -30,12 +29,13 @@ App({
 		                let data = {
 		                  code: res.code,
 		                  nickname: uinfo.nickName,
-		                  avatarurl: uinfo.avatarUrl
+                      avatar: uinfo.avatarUrl
 		                }
 		                let rcode = res.code
 		                console.log(res.code)
+                    // return
 		                wx.request({
-		                  url: that.IPurl+'/api/appletLogin',
+                      url: that.IPurl +'/api/login/login',
 		                  data: data,
 		                  header: {
 		                    'content-type': 'application/x-www-form-urlencoded'
@@ -46,7 +46,14 @@ App({
 		                    console.log(res.data)
 		                    if (res.data.code == 1) {
 		                      console.log('登录成功')
-                          wx.setStorageSync('tokenstr', res.data.data.userToken)
+                          wx.setStorageSync('loginmsg', res.data.data)
+                          wx.setStorageSync('user_type', res.data.type)
+                          if (res.data.type==0){
+                            wx.navigateTo({
+                              url: '/pages/login_tel/login_tel',
+                            })
+                          }
+                          
 		                    } else {
 		                      wx.removeStorageSync('userInfo')
 		                      wx.removeStorageSync('tokenstr')
@@ -77,7 +84,6 @@ App({
 		})
 	},
   dologin(type) {
-    return
     let that = this
     wx.login({
       success: function (res) {
@@ -86,12 +92,12 @@ App({
         let data = {
           code: res.code,
           nickname: uinfo.nickName,
-          avatarurl: uinfo.avatarUrl
+          avatar: uinfo.avatarUrl
         }
         let rcode = res.code
         console.log(res.code)
         wx.request({
-          url: that.IPurl + '/api/appletLogin',
+          url: that.IPurl + '/api/login/login',
           data: data,
           header: {
             'content-type': 'application/x-www-form-urlencoded'
@@ -102,7 +108,13 @@ App({
             console.log(res.data)
             if (res.data.code == 1) {
               console.log('登录成功')
-              wx.setStorageSync('tokenstr', res.data.data.userToken)
+              wx.setStorageSync('loginmsg', res.data.data)
+              wx.setStorageSync('user_type', res.data.type)
+              if (res.data.type == 0) {
+                wx.navigateTo({
+                  url: '/pages/login_tel/login_tel',
+                })
+              }
               if (type == 'shouquan') {
                 wx.navigateBack()
               }
@@ -135,14 +147,20 @@ App({
 	},
 	jump(e) {
 		console.log(e)
-    if (e.currentTarget.dataset.quanxian){
-      if (!wx.getStorageSync('userInfo')) {
-        wx.navigateTo({
-          url: '/pages/login/login',
-        })
-        return
-      }
+    if (!wx.getStorageSync('userInfo')) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+      return
     }
+    // if (e.currentTarget.dataset.quanxian){
+    //   if (!wx.getStorageSync('userInfo')) {
+    //     wx.navigateTo({
+    //       url: '/pages/login/login',
+    //     })
+    //     return
+    //   }
+    // }
 		if(e.currentTarget.dataset.url){
 			wx.navigateTo({
 				url: e.currentTarget.dataset.url
@@ -176,12 +194,22 @@ App({
 		// 	})
 		// 	return
 		// }
-		console.log(e)
-		if(e.currentTarget.dataset.tel){
-			wx.makePhoneCall({
-				phoneNumber: e.currentTarget.dataset.tel
-			})
-		}
+		
+    var tel = e.currentTarget.dataset.tel
+    console.log(tel==null)
+    if (!tel) {
+      wx.showToast({
+        icon: 'none',
+        title: '未绑定手机号',
+      })
+      return
+    }
+		
+      
+    wx.makePhoneCall({
+      phoneNumber: tel
+    })
+		
 		
 	},
 	data: {

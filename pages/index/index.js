@@ -28,73 +28,95 @@ Page({
         name: '巡机单',
         img: '/static/images/1_09.jpg',
         url: '/pages/list/list',
-        type: '2'
+        indextype:1,
+        sftype:1,
+        type: '1'
       },
       {
         name: '已巡机',
         img: '/static/images/1_10.jpg',
         url: '/pages/list/list',
-        type: '3'
+        indextype: 1,
+        sftype: 1,
+        type: '2'
       },
       {
         name: '装机单',
         img: '/static/images/1_13.jpg',
         url: '/pages/list/list',
-        type: '4'
+        sftype: 1,
+        indextype: 2,
+        type: '1'
       },
       {
         name: '已装机',
         img: '/static/images/1_14.jpg',
         url: '/pages/list/list',
-        type: '5'
+        sftype: 1,
+        indextype: 2,
+        type: '2'
       },
       {
         name: '维护单',
         img: '/static/images/1_17.jpg',
         url: '/pages/list/list',
-        type: '6'
+        sftype: 1,
+        indextype: 3,
+        type: '1'
       },
       {
         name: '已维护',
         img: '/static/images/1_18.jpg',
         url: '/pages/list/list',
-        type: '7'
+        indextype: 3,
+        sftype: 1,
+        type: '2'
       },
       {
         name: '换机单',
         img: '/static/images/2_09.jpg',
         url: '/pages/list/list',
-        type: '8'
+        indextype: 4,
+        sftype: 1,
+        type: '1'
       },
       {
         name: '已换机',
         img: '/static/images/2_10.jpg',
         url: '/pages/list/list',
-        type: '9'
+        sftype: 1,
+        indextype: 4,
+        type: '2'
       },
       {
         name: '撤机单',
         img: '/static/images/2_13.jpg',
         url: '/pages/list/list',
-        type: '10'
+        indextype: 5,
+        sftype: 1,
+        type: '1'
       },
       {
         name: '已撤机',
         img: '/static/images/2_14.jpg',
         url: '/pages/list/list',
-        type: '11'
+        indextype: 5,
+        sftype: 1,
+        type: '2'
       },
       {
         name: '终端交易查询',
         img: '/static/images/2_17.jpg',
         url: '/pages/list/list',
-        type: '12'
+        sftype: 2,
+        type: '111'
       },
       {
         name: '应收列表',
         img: '/static/images/2_18.jpg',
         url: '/pages/list/list',
-        type: '13'
+        sftype: 1,
+        type: '2'
       },
       
     ],
@@ -102,7 +124,8 @@ Page({
     autoplay: true,
     interval: 3000,
     duration: 1000,
-    circular: true
+    circular: true,
+    h_type:1
   },
 
   /**
@@ -126,7 +149,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (wx.getStorageSync('user_type')){
+      this.setData({
+        h_type: wx.getStorageSync('user_type')
+      })
+    }
   },
 
   /**
@@ -147,7 +174,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getdata()
+    wx.stopPullDownRefresh();
+    // this.getdata()
   },
 
   /**

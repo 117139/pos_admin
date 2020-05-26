@@ -1,0 +1,40 @@
+<!--pages/login1/login1.wxml-->
+<view class="container">
+
+  <view class="header">
+    <image src="/static/images/logo.png"></image>
+  </view>
+  <form class="w100" bindsubmit="formSubmit">
+    <view class="srkbox mb60">
+      <text class="iconfont iconshouji cc2"></text>
+      <input type="text" name="tel" bindblur='oniptblur' placeholder="请输入账号" />
+      <!-- <view wx:if="{{setstate==0}}" class="getcode" bindtap="getcode">获取验证码</view>
+		<view wx:if="{{setstate==1}}" class="getcode">{{time}}s后重新获取</view> -->
+
+    </view>
+
+    <view class="srkbox mb60">
+      <text class="iconfont iconsuo cc2"></text>
+      <input wx:if="{{showpwd==1}}" type="password" name="pwd" maxlength="18" placeholder="密码由6-18位字母或数字组成" bindblur='oniptblurpwd' value="{{pwd}}" />
+      <input wx:if="{{showpwd==0}}" type="text" name="pwd" maxlength="18" placeholder="密码由6-18位字母或数字组成" bindblur='oniptblurpwd' value="{{pwd}}" />
+      <text wx:if="{{showpwd==1}}" class="iconfont iconiconcloseeye cc2" data-type="0" bindtap="toggless"></text>
+      <text wx:if="{{showpwd==0}}" class="iconfont iconyanjing cc2" data-type="1" bindtap="toggless"></text>
+    </view>
+    <picker class="w100" bindchange="bindPickerChange" value="{{index}}" range="{{yc_data}}" range-key='name'>
+      <view class="srkbox mb60">
+        <text class="iconfont iconanquan cc2"></text>
+        <input type="text" name="code" placeholder="请选择身份" value="{{'请选择身份：'+yc_data[index].name}}" />
+      </view>
+    </picker>
+    <!-- <view class="srkbox mb60">
+		<text class="iconfont iconanquan cc2"></text>
+		<input type="text" name="code" placeholder="验证码"/>
+	</view> -->
+
+    <view class="tjbtn">
+      登录
+      <button class="definebtn" form-type="submit">提交</button>
+    </view>
+    <!-- <view class="denglu" bindtap="goback">返回登录</view> -->
+  </form>
+</view>

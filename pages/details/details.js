@@ -12,6 +12,8 @@ Page({
    */
   data: {
     type: '',
+    id:'',
+    datas:'',
     activity_location: '',
     location:'',
     yc_data: [
@@ -41,9 +43,16 @@ Page({
   onLoad: function (options) {
     var that = this
     console.log(that.options)
+    if (options.indextype) {
+      that.setData({
+        indextype: options.indextype
+      })
+    }
     if (that.options.type){
       that.setData({
-        type: that.options.type
+        type: that.options.type,
+        id: that.options.id,
+        
       })
     }
     if (that.options.name) {
@@ -51,7 +60,7 @@ Page({
         title: that.options.name,
       })
     }
-
+    that.getdata()
 
     /*判断是第一次加载还是从position页面返回
         如果从position页面返回，会传递用户选择的地点*/
@@ -494,4 +503,86 @@ Page({
     }
     // this.getgoods(idx, this.data.fw_data[idx].id)
   },
+  getdata(){
+    var that =this
+    var data = {
+      token: wx.getStorageSync('loginmsg').token,
+      page: that.data.page,
+
+    }
+    var jkurl = app.IPurl + '/api/deal/deal_show'
+    if (that.data.indextype == 1) { //巡机单
+      jkurl = app.IPurl + '/api/dire/xd_dire_show'
+      data = {
+        token: wx.getStorageSync('loginmsg').token,
+        id: that.data.id
+      }
+    }
+    if (that.data.indextype == 2) { //装机单
+      jkurl = app.IPurl + '/api/dire/zd_dire_show'
+      data = {
+        token: wx.getStorageSync('loginmsg').token,
+        id: that.data.id
+      }
+    }
+    if (that.data.indextype == 3) { //维护单
+      jkurl = app.IPurl + '/api/dire/wd_dire_show'
+      data = {
+        token: wx.getStorageSync('loginmsg').token,
+        id: that.data.id
+      }
+    }
+    if (that.data.indextype == 4) { //换机单
+      jkurl = app.IPurl + '/api/dire/hd_dire_show'
+      data = {
+        token: wx.getStorageSync('loginmsg').token,
+        id: that.data.id
+      }
+    }
+    if (that.data.indextype == 5) { //撤机单
+      jkurl = app.IPurl + '/api/dire/cd_dire_show'
+      data = {
+        token: wx.getStorageSync('loginmsg').token,
+        id: that.data.id
+      }
+    }
+    wx.request({
+      url: jkurl,
+      data: data,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'POST',
+      success(res) {
+        console.log(res.data)
+        if (res.data.code == 1) {
+          console.log('获取成功')
+         that.setData({
+           datas:res.data.data
+         })
+          
+        } else {
+          if (res.data.msg) {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '加载失败'
+            })
+          }
+        }
+
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '登录失败'
+        })
+      }
+    })
+  }
 })

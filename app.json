@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/caiwu/caiwu",
+    "pages/login_tel/login_tel",
     "pages/list_new/list_new",
     "pages/fenlei/fenlei",
     "pages/shanghu_set/shanghu_set",

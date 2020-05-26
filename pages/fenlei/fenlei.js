@@ -12,18 +12,21 @@ Page({
         name: '开通商户账号',
         img: '/static/images/3_03.jpg',
         url: '/pages/list/list?type=200',
+        sftype: 1,
         type: '2'
       },
       {
         name: '坐标手机',
         img: '/static/images/3_05.jpg',
         url: '/pages/list/list?type=201',
+        sftype: 1,
         type: '2'
       },
       {
         name: '查看商户详情',
         img: '/static/images/3_09.jpg',
         url: '/pages/list/list',
+        sftype: 1,
         type: '2'
       },
       // {
@@ -36,20 +39,23 @@ Page({
         name: '修改商户信息',
         img: '/static/images/3_13.jpg',
         url: '/pages/list/list?type=204',
+        sftype: 1,
         type: '2'
       },
       {
         name: '新增维护单',
         img: '/static/images/3_14.jpg',
         url: '/pages/list_new/list_new',
+        sftype: 1,
         type: '2'
       },
-      // {
-      //   name: '商圈信息',
-      //   img: '/static/images/3_17.jpg',
-      //   url: '/pages/list/list',
-      //   type: '2'
-      // }
+      {
+        name: '切换账号',
+        img: '/static/images/3_17.jpg',
+        url: '/pages/login_tel/login_tel',
+        sftype: 2,
+        type: '2'
+      }
 
     ],
     fl_cur:0,
@@ -59,10 +65,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      page:1
-    })
-    this.getdata()
+    if (wx.getStorageSync('user_type')) {
+      this.setData({
+        h_type: wx.getStorageSync('user_type')
+      })
+    }
   },
   retry() { 
     this.setData({

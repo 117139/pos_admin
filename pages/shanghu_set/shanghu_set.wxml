@@ -29,7 +29,7 @@
 
   <view class="xq_box3">
     <view class="xq_title">
-      <image src="/static/images/4_06.jpg"></image>收集坐标
+      <image src="/static/images/4_06.jpg"></image>修改商户信息
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>

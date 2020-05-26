@@ -9,17 +9,17 @@
       <view class="xq_add">
         <view class="oh2">
           <image src="/static/images/dianpu.png"></image>
-          远市清城区八零后汽车服务中心</view>
+          {{datas.com_tenant_name}}</view>
         <view class="oh2">
           <image src="/static/images/dizhi.png"></image>
-          {{activity_location}}</view>
+          {{datas.address}}</view>
       </view>
-      <view class="tel_btn" bindtap="call" data-tel="18300000000" style="background-image:url('/static/images/4_03.jpg')">
+      <view class="tel_btn" bindtap="call" data-tel="{{datas.contacts_phone}}" style="background-image:url('/static/images/4_03.jpg')">
         <image src="/static/images/4_03.jpg"></image>
       </view>
     </view>
   </view>
-  <view class="xq_box2">
+  <view class="xq_box2" wx:if="{{type==1}}">
     <view>
       <view wx:if="{{ldata}}" bindtap="getLocation1">点击选择商户新位置</view>
       <!-- <text wx:if="{{ldata}}" bindtap="again_getLocation">点击选择商户新位置</text> -->
@@ -37,74 +37,70 @@
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1 c5099f7">商户编号：1000000000515904</view>
+      <view class="oh1 flex_1 c5099f7">商户编号：{{datas.com_tenant_code?datas.com_tenant_code:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">银行经办人：（无）</view>
+      <view class="oh1 flex_1">银行经办人：{{datas.bankRe?datas.bankRe.title:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">入账行号：1000000000515904</view>
+      <view class="oh1 flex_1">入账行号：{{datas.put_account?datas.put_account:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">银行卡号：1000000000515904</view>
+      <view class="oh1 flex_1">银行卡号：{{datas.applicant_card?datas.applicant_card:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">收单行号：1000000000515904</view>
+      <view class="oh1 flex_1">收单行号：{{datas.accBank?datas.accBank.title:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">收单行：1000000000515904</view>
+      <view class="oh1 flex_1">收单行：{{datas.accBank?datas.accBank.pos_ac_a1:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">银行卡号：1000000000515904</view>
+      <view class="oh1 flex_1">内手续费：{{datas.rate_ben?datas.rate_ben:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">内手续费：0.498%扣率，19元封顶</view>
+      <view class="oh1 flex_1">外手续费：{{datas.rate_wai?datas.rate_wai:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">外手续费：1.50%扣率</view>
+      <view class="oh1 flex_1">装机联系人：{{datas.app.length>0?datas.app[0].zhuang_contacts:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">装机联系人：邹卫华</view>
+      <view class="oh1 flex_1">商户法人：{{datas.legal_person?datas.legal_person:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">商户法人：邹卫华</view>
+      <view class="oh1 flex_1">商户属性：{{datas.comTenant?datas.comTenant.title:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">商户属性：对公</view>
+      <view class="oh1 flex_1">法人身份证：{{datas.papers_number?datas.papers_number:'(无)'}}</view>
     </view>
-    <view class="xq_li_msg">
+    <view class="xq_li_msg" wx:if="{{datas.app.length>0}}">
       <view class="xd"></view>
-      <view class="oh1 flex_1">法人身份证：14****************00</view>
-    </view>
-    <view class="xq_li_msg">
-      <view class="xd"></view>
-      <view class="oh1 flex_1">维护公司：广东清远分公司</view>
+      <view class="oh1 flex_1">维护公司：{{datas.app[0].weiCom?datas.app[0].weiCom.title:'(无)'}}</view>
     </view>
   </view>
-  <view class="cz_li" bindtap="jump" data-url="/pages/gd_yc/gd_yc">
+  <view  wx:if="{{type==1}}" class="cz_li" bindtap="jump" data-url="/pages/gd_yc/gd_yc">
     <view class="c5099f7">工单异常</view>
     <view>
       <text class="iconfont icon-next fz28"></text>
     </view>
   </view>
-  <view class="cz_li" bindtap="jump" data-url="/pages/gd_upimg/gd_upimg">
+  <view  wx:if="{{type==1}}" class="cz_li" bindtap="jump" data-url="/pages/gd_upimg/gd_upimg">
     <view class="">工单图片</view>
     <view>
       <text class="iconfont icon-next fz28"></text>
     </view>
   </view>
-  <view class="xq_box3">
+  <view  wx:if="{{type==1}}" class="xq_box3">
     <view class="xq_title">
       <image src="/static/images/4_06.jpg"></image>工单耗时、配件
     </view>
@@ -179,7 +175,7 @@
       </view>
     </view>
   </view>
-  <view class="xq_box3">
+  <view  wx:if="{{type==1}}" class="xq_box3">
     <view class="xq_title">
       <image src="/static/images/4_06.jpg"></image>巡查情况
     </view>
