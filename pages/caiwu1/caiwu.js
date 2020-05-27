@@ -7,12 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    btnkg:0,
     id:'',
 		type:[],
 		tidx:0,
     page:1,
     pagesize:20,
-		cw_data:[],
+		cw_data:'',
+    message:0,
   },
 
   /**
@@ -93,14 +95,11 @@ Page({
     const htmlStatus1 = htmlStatus.default(that)
     console.log('获取列表')
     
-   
-    
     wx.request({
-      url: app.IPurl +'/api/app_deal/search',
+      url: app.IPurl +'/api/dire/gathering_show',
       data: {
         token: wx.getStorageSync('loginmsg').token,
-        id:that.data.id,
-        page: that.data.page
+        id:that.data.id
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -109,38 +108,18 @@ Page({
       method: 'post',
       success(res) {
         if (res.data.code == 1) {   //成功
-          let resultd = res.data.data.app_deal
+          let resultd = res.data.data
           
-
-          if (resultd.length == 0) {  //数据为空
-            if (that.data.page == 1) {      //第一次加载
-              htmlStatus1.dataNull()    // 切换为空数据状态
-            } else {
-              wx.showToast({
-                icon: 'none',
-                title: '暂无更多数据'
-              })
-            }
-
-          } else {                           //数据不为空
-            if (that.data.page == 1) {
-              that.data.cw_data = resultd
-              that.data.page++
-              that.setData({
-                cw_data: resultd
-              })
-            }else{
-              that.data.cw_data = that.data.cw_data.concat(resultd)
-              that.data.page++
-              that.setData({
-                cw_data: that.data.cw_data,
-                page: that.data.page,
-              })
-              console.log(that.data.cw_data)
-            }
+            
+           
+            that.setData({
+              cw_data: resultd,
+              message: resultd.message
+            })
+            
             
             htmlStatus1.finish()    // 切换为finish状态
-          }
+         
           // console.log(res.data.list)
 
 
@@ -175,6 +154,76 @@ Page({
         wx.setNavigationBarTitle({
           title: '交易记录'
         })
+      }
+    })
+  },
+  sub() {
+    var that = this
+    var id = that.data.id
+    console.log(id)
+    var data = {
+      token: wx.getStorageSync('loginmsg').token,
+      id: that.data.id,
+
+    }
+    var jkurl = app.IPurl + '/api/dire/gathering_save'
+    if (that.data.btnkg == 0) {
+      that.setData({
+        btnkg: 1
+      })
+    } else {
+      return
+    }
+    wx.request({
+      url: jkurl,
+      data: data,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'post',
+      success(res) {
+        console.log(res.data)
+        if (res.data.code == 1) {  //数据为空
+          wx.showToast({
+            icon: 'none',
+            title: '操作成功'
+          })
+          // that.setData({
+          //   zhanghao: res.data.data.username,
+          //   mima: res.data.data.password
+          // })
+          setTimeout(function () {
+            wx.navigateBack()
+          }, 1000)
+        } else {
+          if (res.data.msg) {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg
+            })
+
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '操作失败'
+            })
+          }
+        }
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '操作失败'
+        })
+      },
+      complete() {
+        that.setData({
+          btnkg: 0
+        })
+        // wx.setNavigationBarTitle({
+        //   title: '下单',
+        // })
       }
     })
   },

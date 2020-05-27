@@ -43,7 +43,7 @@ Page({
       {
         name: '装机单',
         img: '/static/images/1_13.jpg',
-        url: '/pages/list/list',
+        url: '/pages/list1/list',
         sftype: 1,
         indextype: 2,
         type: '1'
@@ -51,7 +51,7 @@ Page({
       {
         name: '已装机',
         img: '/static/images/1_14.jpg',
-        url: '/pages/list/list',
+        url: '/pages/list1/list',
         sftype: 1,
         indextype: 2,
         type: '2'
@@ -107,14 +107,15 @@ Page({
       {
         name: '终端交易查询',
         img: '/static/images/2_17.jpg',
-        url: '/pages/list/list',
+        url: '/pages/list_zd/list_zd',
         sftype: 2,
         type: '111'
       },
       {
         name: '应收列表',
         img: '/static/images/2_18.jpg',
-        url: '/pages/list/list',
+        url: '/pages/list1/list',
+        indextype: 6,
         sftype: 1,
         type: '2'
       },

@@ -2,24 +2,31 @@
 <import src="/utils/htmlStatus/index.wxml" />
 <wxs src="../../utils/filter.wxs" module="filter" />
 <view class="container">
-	<view class="w100" 
-		wx:if="{{tidx==idx}}"
-		wx:for="{{cw_data}}" 
-		wx:for-index="idx" 
-		wx:for-item="item" 
-		wx:key="idx">
+	<view class="w100">
 		<view class="cw_list"
-			wx:for="{{cw_data[idx]}}" 
-			wx:for-index="idx1" 
-			wx:for-item="item1" 
-			wx:key="idx1">
+      wx:for="{{cw_data}}" 
+      wx:for-index="idx" 
+      wx:for-item="item" 
+      wx:key="idx">
 			<view class="cw1">
-				<view class="fz28 c3">{{item1.TypeName}}</view>
-				<view wx:if="{{item1.BeiZhuName!==''}}" class="fz24 c9">{{item1.BeiZhuName}}</view>
+				<view class="fz28 c3">商户名称</view>
+				<view  class="fz24 c9">{{item.K}}</view>
 			</view>
-			<view class="cw1 cw2">
-				<view class="fz32 cee1111">{{item1.Sign}}{{item1.Price}}</view>
-				<view wx:if="{{item1.AddTime}}" class="fz24 c9">{{filter.getTime(item1.AddTime)}}</view>
+			<view class="cw1">
+				<view class="fz28 c3">商户编码</view>
+				<view  class="fz24 c9">{{item.J}}</view>
+			</view>
+			<view class="cw1">
+				<view class="fz28 c3">终端号</view>
+				<view  class="fz24 c9">{{item.I}}</view>
+			</view>
+			<view class="cw1">
+				<view class="fz28 c3">交易日期</view>
+				<view  class="fz24 c9">{{item.D}}</view>
+			</view>
+			<view class="cw1">
+				<view class="fz28 c3">交易金额</view>
+				<view  class="fz24 c9">{{item.F}}</view>
 			</view>
 		</view>
     

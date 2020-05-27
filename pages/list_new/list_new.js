@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    btnkg:0,
     id: '',
     uname: '',
     uphone:'',
@@ -18,14 +19,10 @@ Page({
     ubeizhu:'',
     
 
-    yc_data: [
-      { name: 12 },
-      { name: 13 },
-      { name: 142 },
-      { name: 1233 },
-      { name: 15 },
-
-    ],
+    cate_data: [],
+    index:0,
+    pj_data:[],
+    hao_data:[],
     whtype: 1,
     zptype:1,
     indexp1: 0,
@@ -33,12 +30,13 @@ Page({
     indexp3: 0,
     indexp4: 0,
     indexp5: 0,
-    num1: '',
-    num2: '',
-    num3: '',
-    num4: '',
-    num5: '',
+    num1: 0,
+    num2: 0,
+    num3: 0,
+    num4: 0,
+    num5: 0,
     indexp0:0,
+    
   },
 
   /**
@@ -57,7 +55,7 @@ Page({
         title: that.options.name,
       })
     }
-
+    that.getdata()
 
     
   },
@@ -255,5 +253,146 @@ Page({
     console.log(id)
     console.log(uname)
     console.log(utel)
+    var data = {
+      token: wx.getStorageSync('loginmsg').token,
+      urgent:that.data.whtype,
+      who:that.data.zptype,
+      type:that.data,
+      name: that.data.uname,
+      tel: that.data.utel,
+      pone: that.data.uphone,
+      gong_desc: that.data.ubeizhu,
+      pei1:that.data.pj_data[that.data.indexp1].id,
+      pei2:that.data.pj_data[that.data.indexp2].id,
+      hao1: that.data.hao_data[that.data.indexp3].id,
+      hao2: that.data.hao_data[that.data.indexp4].id,
+      pei_num1: that.data.num1,
+      pei_num2: that.data.num2,
+      hao_num1: that.data.num3,
+      hao_num2: that.data.num4,
+      id:that.data.id,
+      password: that.data.mima,
+
+    }
+    var jkurl = app.IPurl + '/api/dire/wd_dire_save'
+    console.log(data)
+    // return
+    if (that.data.btnkg == 0) {
+      that.setData({
+        btnkg: 1
+      })
+    } else {
+      return
+    }
+    wx.request({
+      url: jkurl,
+      data: data,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'post',
+      success(res) {
+        console.log(res.data)
+        if (res.data.code == 1) {  //数据为空
+          wx.showToast({
+            icon: 'none',
+            title: '操作成功'
+          })
+          // that.setData({
+          //   zhanghao: res.data.data.username,
+          //   mima: res.data.data.password
+          // })
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 2
+            })
+          }, 1000)
+        } else {
+          if (res.data.msg) {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg
+            })
+
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '操作失败'
+            })
+          }
+        }
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '操作失败'
+        })
+      },
+      complete() {
+        that.setData({
+          btnkg: 0
+        })
+        // wx.setNavigationBarTitle({
+        //   title: '下单',
+        // })
+      }
+    })
+  },
+  getdata() {
+    var that = this
+    var data = {
+      token: wx.getStorageSync('loginmsg').token,
+      id: that.data.id
+
+    }
+    var jkurl = app.IPurl + '/api/dire/wd_dire_edit'
+    data = {
+      token: wx.getStorageSync('loginmsg').token,
+      id: that.data.id
+    }
+
+
+    wx.request({
+      url: jkurl,
+      data: data,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'POST',
+      success(res) {
+        console.log(res.data)
+        if (res.data.code == 1) {
+          console.log('获取成功')
+          that.setData({
+            datas: res.data.data,
+            cate_data: res.data.cate,
+            pj_data: res.data.pei,
+            hao_data:res.data.hao
+          })
+
+        } else {
+          if (res.data.msg) {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '加载失败'
+            })
+          }
+        }
+
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '登录失败'
+        })
+      }
+    })
   },
 })

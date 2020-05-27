@@ -23,3 +23,80 @@
   color: #fff;
   font-size: 30rpx;
 }
+
+
+.xq_box3{
+  width: 100%;
+  padding: 36rpx 46rpx;
+  box-sizing: border-box;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+.xq_title{
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 45rpx;
+}
+.xq_title image{
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 16rpx;
+}
+
+.pj_li{
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}
+.pj_num{
+  display: flex;
+  align-items: center;
+  margin-left: 20rpx;
+}
+.pj_num input{
+  min-width: 0;
+  width: 100rpx;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  margin-left: 10rpx;
+}
+.pj_tit{
+  margin-right: 20rpx;
+}
+.pj_name{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 10rpx;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+.cz_btn{
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100rpx;
+  font-size: 28rpx;
+  color: #fff;
+  background:#1AAD19;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+checkbox{
+  transform:scale(0.5);
+}
+.checkbox{
+  font-size: 28rpx;
+  margin-right: 30rpx;
+}
+.yc_yy{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx;
+  font-size: 28rpx;
+}

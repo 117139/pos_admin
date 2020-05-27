@@ -4,7 +4,7 @@
 <view class="container">
   <template is="htmlStatus" data="{{...htmlStatus}}" />
   <view class="xq_box1" style="background-image:url('/static/images/tx.jpg')">
-    <image class="xq_box1_bg" src="/static/images/tx.jpg"></image>
+    <image class="xq_box1_bg" src="{{filter.imgIP(datas.menmian)}}" mode="aspectFill"></image>
     <view class="xq_box1_msg">
       <view class="xq_add">
         <view class="oh2">
@@ -19,7 +19,7 @@
       </view>
     </view>
   </view>
-  <view class="xq_box2" wx:if="{{type==1}}">
+  <view class="xq_box2">
     <view>
       <view wx:if="{{ldata}}" bindtap="getLocation1">点击选择商户新位置</view>
       <!-- <text wx:if="{{ldata}}" bindtap="again_getLocation">点击选择商户新位置</text> -->
@@ -88,124 +88,17 @@
       <view class="oh1 flex_1">维护公司：{{datas.app[0].weiCom?datas.app[0].weiCom.title:'(无)'}}</view>
     </view>
   </view>
-  <view  wx:if="{{type==1}}" class="cz_li" bindtap="jump" data-url="/pages/gd_yc/gd_yc">
+  <view  wx:if="{{type==1}}" class="cz_li" bindtap="jump" data-url="/pages/gd_yc/gd_yc?indextype={{indextype}}&id={{id}}">
     <view class="c5099f7">工单异常</view>
     <view>
       <text class="iconfont icon-next fz28"></text>
     </view>
   </view>
-  <view  wx:if="{{type==1}}" class="cz_li" bindtap="jump" data-url="/pages/gd_upimg/gd_upimg">
+  <view  wx:if="{{type==1}}" class="cz_li" bindtap="jump" data-url="/pages/gd_upimg/gd_upimg?indextype={{indextype}}&id={{id}}">
     <view class="">工单图片</view>
     <view>
       <text class="iconfont icon-next fz28"></text>
     </view>
-  </view>
-  <view  wx:if="{{type==1}}" class="xq_box3">
-    <view class="xq_title">
-      <image src="/static/images/4_06.jpg"></image>工单耗时、配件
-    </view>
-    <view class="pj_li">
-      <view class="pj_tit">配件1</view>
-      <picker class="flex_1" bindchange="bindPickerChange1" data-ptype="1" value="{{indexp1}}" range="{{yc_data}}" range-key='name'>
-        <view class="pj_name">
-          <view class="cz_tit">{{yc_data[indexp1].name?yc_data[indexp1].name:'无'}}</view>
-          <view>
-            <text class="iconfont icon-next-copy fz28"></text>
-          </view>
-        </view>
-      </picker>
-      <view class="pj_num">数量
-        <input value="{{num1}}" placeholder="0" bindinput="get_val_li" data-ptype="1"></input>
-      </view>
-    </view>
-    <view class="pj_li">
-      <view class="pj_tit">配件2</view>
-      <picker class="flex_1" bindchange="bindPickerChange1" data-ptype="2" value="{{indexp2}}" range="{{yc_data}}" range-key='name'>
-        <view class="pj_name">
-          <view class="cz_tit">{{yc_data[indexp2].name?yc_data[indexp2].name:'无'}}</view>
-          <view>
-            <text class="iconfont icon-next-copy fz28"></text>
-          </view>
-        </view>
-      </picker>
-      <view class="pj_num">数量
-        <input value="{{num2}}" placeholder="0" bindinput="get_val_li" data-ptype="2"></input>
-      </view>
-    </view>
-    <view class="pj_li">
-      <view class="pj_tit">配件3</view>
-      <picker class="flex_1" bindchange="bindPickerChange1" data-ptype="3" value="{{indexp3}}" range="{{yc_data}}" range-key='name'>
-        <view class="pj_name">
-          <view class="cz_tit">{{yc_data[indexp3].name?yc_data[indexp3].name:'无'}}</view>
-          <view>
-            <text class="iconfont icon-next-copy fz28"></text>
-          </view>
-        </view>
-      </picker>
-      <view class="pj_num">数量
-        <input value="{{num3}}" placeholder="0" bindinput="get_val_li" data-ptype="3"></input>
-      </view>
-    </view>
-    <view class="pj_li">
-      <view class="pj_tit">配件4</view>
-      <picker class="flex_1" bindchange="bindPickerChange1" data-ptype="4" value="{{indexp4}}" range="{{yc_data}}" range-key='name'>
-        <view class="pj_name">
-          <view class="cz_tit">{{yc_data[indexp4].name?yc_data[indexp4].name:'无'}}</view>
-          <view>
-            <text class="iconfont icon-next-copy fz28"></text>
-          </view>
-        </view>
-      </picker>
-      <view class="pj_num">数量
-        <input value="{{num4}}" placeholder="0" bindinput="get_val_li" data-ptype="4"></input>
-      </view>
-    </view>
-    <view class="pj_li">
-      <view class="pj_tit">配件5</view>
-      <picker class="flex_1" bindchange="bindPickerChange1" data-ptype="5" range="{{yc_data}}" range-key='name'>
-        <view class="pj_name">
-          <view class="cz_tit">{{yc_data[indexp5].name?yc_data[indexp5].name:'无'}}</view>
-          <view>
-            <text class="iconfont icon-next-copy fz28"></text>
-          </view>
-        </view>
-      </picker>
-      <view class="pj_num">数量
-        <input value="{{num5}}" placeholder="0" bindinput="get_val_li" data-ptype="5"></input>
-      </view>
-    </view>
-  </view>
-  <view  wx:if="{{type==1}}" class="xq_box3">
-    <view class="xq_title">
-      <image src="/static/images/4_06.jpg"></image>巡查情况
-    </view>
-    <label class="checkbox ">
-      <checkbox value="cb" checked="true"/>正常经营
-    </label>
-    <label class="checkbox ">
-      <checkbox value="cb" checked="true"/>商户机具在指定地点使用
-    </label>
-    <label class="checkbox ">
-      <checkbox value="cb" />商户机具存在一柜多机情况
-    </label>
-    <label class="checkbox ">
-      <checkbox value="cb" checked="true"/>收银操作熟练
-    </label>
-    <label class="checkbox ">
-      <checkbox value="cb" />存在虚假、欺诈和套现行为
-    </label>
-    <label class="checkbox ">
-      <checkbox value="cb" checked="true"/>商户MCC与经营一致
-    </label>
-    <label class="checkbox ">
-      <checkbox value="cb" checked="true"/>单据按要求保存
-    </label>
-    <label class="checkbox ">
-      <checkbox value="cb" checked="true"/>收银员经过培训上岗
-    </label>
-    <label class="checkbox ">
-      <checkbox value="cb" checked="true"/>POS使用正常
-    </label>
   </view>
   <view class="xq_box3">
     <view class="xq_title">
@@ -219,99 +112,99 @@
     <view class="xq_li_msg">
       <view class="xd"></view>
       <view class="oh1 flex_1">有协议</view>
-      <view class="xq_li_xbox cur"></view>
+      <view class="xq_li_xbox {{datas.fu_xy==1?'cur':''}}"></view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
       <view class="oh1 flex_1">有税务登记证</view>
-      <view class="xq_li_xbox"></view>
+      <view class="xq_li_xbox {{datas.fu_sw==1?'cur':''}}"></view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
       <view class="oh1 flex_1">有调查表</view>
-      <view class="xq_li_xbox"></view>
+      <view class="xq_li_xbox {{datas.fu_dc==1?'cur':''}}"></view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
       <view class="oh1 flex_1">有账号复印件</view>
-      <view class="xq_li_xbox"></view>
+      <view class="xq_li_xbox {{datas.fu_kz==1?'cur':''}}"></view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
       <view class="oh1 flex_1">有身份证复印件</view>
-      <view class="xq_li_xbox"></view>
+      <view class="xq_li_xbox {{datas.fu_sz==1?'cur':''}}"></view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
       <view class="oh1 flex_1">有租赁合同</view>
-      <view class="xq_li_xbox"></view>
+      <view class="xq_li_xbox {{datas.fu_zl==1?'cur':''}}"></view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
       <view class="oh1 flex_1">有转租赁合同</view>
-      <view class="xq_li_xbox"></view>
+      <view class="xq_li_xbox {{datas.fu_zz==1?'cur':''}}"></view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
       <view class="oh1 flex_1">有业务授权委托书</view>
-      <view class="xq_li_xbox"></view>
+      <view class="xq_li_xbox {{datas.fu_yw==1?'cur':''}}"></view>
     </view>
   </view>
-  <view class="xq_box3">
+  <view class="xq_box3" wx:for="{{datas.app}}"  wx:for-item="item">
     <view class="xq_title">
-      <image src="/static/images/4_06.jpg"></image>终端信息
+      <image src="/static/images/4_06.jpg"></image>终端信息-{{item.app_code}}
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1 c5099f7">终端号：1000000000515904</view>
+      <view class="oh1 flex_1 c5099f7">终端号：{{item.app_code?item.app_code:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">机身固话：0489754654</view>
+      <view class="oh1 flex_1">机身固话：{{item.b_phone?item.b_phone:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">机型编码：1000000000515904</view>
+      <view class="oh1 flex_1">机型编码：{{item.pos_module_value?item.pos_module_value.pos_apparatus_aa:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">版本号：1000000000515904</view>
+      <view class="oh1 flex_1">版本号：{{item.versions?item.versions.versions:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">机型：1000000000515904</view>
+      <view class="oh1 flex_1">机型：{{item.pos_module_value?item.pos_module_value.pos_apparatus_aa:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">机身号：1000000000515904</view>
+      <view class="oh1 flex_1">机身号：{{item.pos_eq_value?item.pos_eq_value.code:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">押金：0</view>
+      <view class="oh1 flex_1">押金：{{item.shiji_yajin_price?item.shiji_yajin_price:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">通讯费：0</view>
+      <view class="oh1 flex_1">通讯费：{{item.shiji_tongxun_price?item.shiji_tongxun_price:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">键盘类型/底座类型：G101</view>
+      <view class="oh1 flex_1">键盘类型/底座类型：{{item.key_module_value?item.key_module_value.title:'(无)'}}</view>
+    </view>
+    <!-- <view class="xq_li_msg">
+      <view class="xd"></view>
+      <view class="oh1 flex_1">键盘类型/底座类型编号：{{item.key_module_value?item.key_module_value.title:'(无)'}}</view>
+    </view> -->
+    <view class="xq_li_msg">
+      <view class="xd"></view>
+      <view class="oh1 flex_1">键盘号：{{item.key_eq_value?item.key_eq_value.code:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">键盘类型/底座类型编号：G101</view>
+      <view class="oh1 flex_1">密钥号：{{item.key?item.key:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
       <view class="xd"></view>
-      <view class="oh1 flex_1">键盘号：G101</view>
-    </view>
-    <view class="xq_li_msg">
-      <view class="xd"></view>
-      <view class="oh1 flex_1">密钥号：G101</view>
-    </view>
-    <view class="xq_li_msg">
-      <view class="xd"></view>
-      <view class="oh1 flex_1">Set机人员：曾佑健</view>
+      <view class="oh1 flex_1">Set机人员：{{item.set_man?item.set_man:'(无)'}}</view>
     </view>
   </view>
   <view class="cz_btn" bindtap="sub">提交</view>

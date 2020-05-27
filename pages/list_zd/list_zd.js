@@ -12,7 +12,7 @@ Page({
     page: 1,
     size:20,
     data_list: [1, 1, 1, 1],
-    search:''
+    search: ''
   },
 
   /**
@@ -50,13 +50,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    var that =this
-    let pages = getCurrentPages();
-    let currPage = pages[pages.length - 1];
-    if (currPage.data.caozuo) {
-      
-      that.retry()
-    }
+
   },
 
   /**
@@ -111,32 +105,13 @@ Page({
   getdata_lsit(){
     let that = this
     const htmlStatus1 = htmlStatus.default(that)
-    var data = {
+    var  data = {
       token: wx.getStorageSync('loginmsg').token,
       page: that.data.page,
       search: that.data.search,
-      type: that.data.type
-
     }
-    var jkurl = app.IPurl + '/api/deal/deal_list'
-    if (that.data.indextype == 1) { //巡机单
-      jkurl = app.IPurl + '/api/dire/xd_dire_list'
-    }
-    if (that.data.indextype == 2) { //装机单
-      jkurl = app.IPurl + '/api/dire/zd_dire_list'
-    }
-    if (that.data.indextype == 3) { //维护单
-      jkurl = app.IPurl + '/api/dire/wd_dire_list'
-    }
-    if (that.data.indextype == 4) { //换机单
-      jkurl = app.IPurl + '/api/dire/hd_dire_list'
-    }
-    if (that.data.indextype == 5) { //撤机单
-      jkurl = app.IPurl + '/api/dire/cd_dire_list'
-    }
-    if (that.data.type == 205) { //新增维护单
-      jkurl = app.IPurl + '/api/dire/wd_dire_edit_list'
-    }
+    var jkurl = app.IPurl + '/api/app_deal/index'
+   
     // return
     wx.request({
       url: jkurl,
@@ -217,13 +192,6 @@ Page({
     if (that.data.type == 204) {
       wx.navigateTo({
         url: '/pages/shanghu_set/shanghu_set?id=' + e.currentTarget.dataset.id,
-      })
-      return
-    }
-    if (that.data.type == 205) {
-      ///pages/list_new/list_new
-      wx.navigateTo({
-        url: '/pages/list_new/list_new?id=' + e.currentTarget.dataset.id,
       })
       return
     }

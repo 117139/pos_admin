@@ -50,11 +50,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    var that =this
+    var that = this
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];
     if (currPage.data.caozuo) {
-      
+     
       that.retry()
     }
   },
@@ -97,7 +97,7 @@ Page({
   sub_ss(e) {
     console.log(e.detail.value)
     this.setData({
-      search: e.detail.value
+      search:e.detail.value
     })
     this.retry()
   },
@@ -111,7 +111,7 @@ Page({
   getdata_lsit(){
     let that = this
     const htmlStatus1 = htmlStatus.default(that)
-    var data = {
+    var  data = {
       token: wx.getStorageSync('loginmsg').token,
       page: that.data.page,
       search: that.data.search,
@@ -134,8 +134,8 @@ Page({
     if (that.data.indextype == 5) { //撤机单
       jkurl = app.IPurl + '/api/dire/cd_dire_list'
     }
-    if (that.data.type == 205) { //新增维护单
-      jkurl = app.IPurl + '/api/dire/wd_dire_edit_list'
+    if (that.data.indextype == 6) { //应收
+      jkurl = app.IPurl + '/api/dire/gathering_list'
     }
     // return
     wx.request({
@@ -220,7 +220,7 @@ Page({
       })
       return
     }
-    if (that.data.type == 205) {
+    if(that.data.type==205){
       ///pages/list_new/list_new
       wx.navigateTo({
         url: '/pages/list_new/list_new?id=' + e.currentTarget.dataset.id,
@@ -230,6 +230,12 @@ Page({
     if (that.data.type == 111) {
       wx.navigateTo({
         url: '/pages/caiwu/caiwu?id=' + e.currentTarget.dataset.id,
+      })
+      return
+    }
+    if (that.data.indextype == 6) {
+      wx.navigateTo({
+        url: '/pages/caiwu1/caiwu?id=' + e.currentTarget.dataset.id,
       })
       return
     }

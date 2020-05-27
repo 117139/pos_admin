@@ -124,6 +124,7 @@ Page({
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];
     if (currPage.data.addresschose) {
+      that.set_add(currPage.data.addresschose)
       this.setData({//将携带的参数赋值
         activity_location: currPage.data.addresschose
       });
@@ -170,7 +171,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    var that =this
     wx.stopPullDownRefresh();
+    that.getdata()
   },
 
   /**
@@ -507,44 +510,24 @@ Page({
     var that =this
     var data = {
       token: wx.getStorageSync('loginmsg').token,
-      page: that.data.page,
+      id: that.data.id
 
     }
-    var jkurl = app.IPurl + '/api/deal/deal_show'
+    var jkurl = app.IPurl + '/api/dire/zd_dire_show'
     if (that.data.indextype == 1) { //巡机单
       jkurl = app.IPurl + '/api/dire/xd_dire_show'
-      data = {
-        token: wx.getStorageSync('loginmsg').token,
-        id: that.data.id
-      }
     }
     if (that.data.indextype == 2) { //装机单
       jkurl = app.IPurl + '/api/dire/zd_dire_show'
-      data = {
-        token: wx.getStorageSync('loginmsg').token,
-        id: that.data.id
-      }
     }
     if (that.data.indextype == 3) { //维护单
       jkurl = app.IPurl + '/api/dire/wd_dire_show'
-      data = {
-        token: wx.getStorageSync('loginmsg').token,
-        id: that.data.id
-      }
     }
     if (that.data.indextype == 4) { //换机单
       jkurl = app.IPurl + '/api/dire/hd_dire_show'
-      data = {
-        token: wx.getStorageSync('loginmsg').token,
-        id: that.data.id
-      }
     }
     if (that.data.indextype == 5) { //撤机单
       jkurl = app.IPurl + '/api/dire/cd_dire_show'
-      data = {
-        token: wx.getStorageSync('loginmsg').token,
-        id: that.data.id
-      }
     }
     wx.request({
       url: jkurl,
@@ -582,6 +565,74 @@ Page({
           icon: 'none',
           title: '登录失败'
         })
+      }
+    })
+  },
+  set_add(add){
+    var that=this
+    var data = {
+      token: wx.getStorageSync('loginmsg').token,
+      id: that.data.id,
+      address: add,
+
+    }
+    var jkurl = app.IPurl + '/api/dire/zd_dire_up'
+    if (that.data.indextype == 1) { //巡机单
+      jkurl = app.IPurl + '/api/dire/xd_dire_up'
+    }
+    if (that.data.indextype == 2) { //装机单
+      jkurl = app.IPurl + '/api/dire/zd_dire_up'
+    }
+    if (that.data.indextype == 3) { //维护单
+      jkurl = app.IPurl + '/api/dire/wd_dire_up'
+    }
+    if (that.data.indextype == 4) { //换机单
+      jkurl = app.IPurl + '/api/dire/hd_dire_up'
+    }
+    if (that.data.indextype == 5) { //撤机单
+      jkurl = app.IPurl + '/api/dire/cd_dire_up'
+    }
+    console.log(jkurl)
+    wx.request({
+      url: jkurl,
+      data: data,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'POST',
+      success(res) {
+        console.log(res.data)
+        if (res.data.code == 1) {  //数据为空
+          wx.showToast({
+            icon: 'none',
+            title: '操作成功'
+          })
+          that.getdata()
+        }  else {
+          if(res.msg){
+            wx.showToast({
+              icon: 'none',
+              title: res.msg
+            })
+          }else{
+            wx.showToast({
+              icon: 'none',
+              title: '操作失败'
+            })
+          }
+        }
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '操作失败'
+        })
+      },
+      complete() {
+        // wx.setNavigationBarTitle({
+        //   title: '下单',
+        // })
       }
     })
   }

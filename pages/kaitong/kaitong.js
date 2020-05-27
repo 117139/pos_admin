@@ -11,29 +11,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    btnkg:0,
     id: '',
-    type: '',
-    activity_location: '',
-    location:'',
-    yc_data: [
-      { name: 12 },
-      { name: 13 },
-      { name: 142 },
-      { name: 1233 },
-      { name: 15 },
-
-    ],
-    indexp1: 0,
-    indexp2: 0,
-    indexp3: 0,
-    indexp4: 0,
-    indexp5:0,
-    num1: 0,
-    num2: 0,
-    num3: 0,
-    num4: 0,
-    num5: 0,
-
+    datas: '',
+    zhanghao: '',
+    mima:'',
   },
 
   /**
@@ -52,45 +34,9 @@ Page({
         title: that.options.name,
       })
     }
-
-
-    /*判断是第一次加载还是从position页面返回
-        如果从position页面返回，会传递用户选择的地点*/
-    console.log(options)
-    if (options.address != null && options.address != '') {
-      //设置变量 address 的值
-      this.setData({
-        address: options.address,
-        location: options.location
-      });
-    } else {
-      // 实例化API核心类
-      qqmapsdk = new QQMapWX({
-        //此key需要用户自己申请
-        key: 'FORBZ-KIPEF-WECJR-NFZKA-MREDV-FCF3O'
-      });
-      var that = this;
-      // 调用接口
-      qqmapsdk.reverseGeocoder({
-        success: function (res) {
-          console.log(res);
-          console.log(res.result.address);
-          that.setData({
-            // address: res.result.address,
-            location: res.result.location,
-            activity_location: res.result.address
-          });
-          // console.log(that.data.address);
-        },
-        fail: function (res) {
-          //console.log(res);
-
-        },
-        complete: function (res) {
-          //console.log(res);
-        }
-      });
-    }
+    that.getdata()
+    that.getkm()
+   
   },
 
   /**
@@ -156,12 +102,201 @@ Page({
   call(e){
     app.call(e)
   },
- 
-  sub(){
-    var that =this
+
+  getkm() {
+    var that = this
     var id = that.data.id
     console.log(id)
-    
+    var data = {
+      token: wx.getStorageSync('loginmsg').token,
+      id: that.data.id
+
+    }
+    var jkurl = app.IPurl + '/api/deal/generate_user'
+    if (that.data.btnkg == 0) {
+      that.setData({
+        btnkg: 1
+      })
+    } else {
+      return
+    }
+    wx.request({
+      url: jkurl,
+      data: data,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'post',
+      success(res) {
+        console.log(res.data)
+        if (res.data.code == 1) {  //数据为空
+          // wx.showToast({
+          //   icon: 'none',
+          //   title: '操作成功'
+          // })
+          that.setData({
+            zhanghao: res.data.data.username,
+            mima: res.data.data.password
+          })
+          // setTimeout(function () {
+          //   wx.navigateBack()
+          // }, 1000)
+        } else {
+          if (res.data.msg) {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg
+            })
+
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '操作失败'
+            })
+          }
+        }
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '操作失败'
+        })
+      },
+      complete() {
+        that.setData({
+          btnkg: 0
+        })
+        // wx.setNavigationBarTitle({
+        //   title: '下单',
+        // })
+      }
+    })
   },
-  
+  sub() {
+    var that = this
+    var id = that.data.id
+    console.log(id)
+    var data = {
+      token: wx.getStorageSync('loginmsg').token,
+      com_tenant_code: that.data.datas.com_tenant_code,
+      com_tenant_name: that.data.datas.com_tenant_name,
+      username: that.data.zhanghao,
+      password: that.data.mima,
+
+    }
+    var jkurl = app.IPurl + '/api/deal/add'
+    if (that.data.btnkg == 0) {
+      that.setData({
+        btnkg: 1
+      })
+    } else {
+      return
+    }
+    wx.request({
+      url: jkurl,
+      data: data,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'post',
+      success(res) {
+        console.log(res.data)
+        if (res.data.code == 1) {  //数据为空
+          wx.showToast({
+            icon: 'none',
+            title: '操作成功'
+          })
+          // that.setData({
+          //   zhanghao: res.data.data.username,
+          //   mima: res.data.data.password
+          // })
+          // setTimeout(function () {
+          //   wx.navigateBack()
+          // }, 1000)
+        } else {
+          if (res.data.msg) {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg
+            })
+
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '操作失败'
+            })
+          }
+        }
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '操作失败'
+        })
+      },
+      complete() {
+        that.setData({
+          btnkg: 0
+        })
+        // wx.setNavigationBarTitle({
+        //   title: '下单',
+        // })
+      }
+    })
+  },
+  getdata() {
+    var that = this
+    var data = {
+      token: wx.getStorageSync('loginmsg').token,
+      id: that.data.id
+
+    }
+    var jkurl= app.IPurl + '/api/dire/zd_dire_show'
+      data = {
+        token: wx.getStorageSync('loginmsg').token,
+        id: that.data.id
+      }
+
+   
+    wx.request({
+      url: jkurl,
+      data: data,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'POST',
+      success(res) {
+        console.log(res.data)
+        if (res.data.code == 1) {
+          console.log('获取成功')
+          that.setData({
+            datas: res.data.data
+          })
+
+        } else {
+          if (res.data.msg) {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '加载失败'
+            })
+          }
+        }
+
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '登录失败'
+        })
+      }
+    })
+  },
 })

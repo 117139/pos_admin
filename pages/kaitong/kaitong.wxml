@@ -9,13 +9,16 @@
       <image src="/static/images/4_06.jpg"></image>商户信息
     </view>
     <view class="xq_li_msg">
-      <view class="oh1 flex_1 ">终端号：1000000000515904</view>
+      <view class="oh1 flex_1 ">商户号：{{datas.com_tenant_code?datas.com_tenant_code:'(无)'}}</view>
     </view>
     <view class="xq_li_msg">
-      <view class="oh1 flex_1">商户名称：中山市小榄镇商行</view>
+      <view class="oh1 flex_1">商户名称：{{datas.com_tenant_name?datas.com_tenant_name:'(无)'}}</view>
     </view>
-    <view class="xq_li_msg">
-      <view class="oh1 flex_1 ">用户名：1000000000515904</view>
+    <view wx:if="{{zhanghao}}" class="xq_li_msg">
+      <view class="oh1 flex_1 ">用户名：{{zhanghao}}</view>
+    </view>
+    <view wx:if="{{mima}}" class="xq_li_msg">
+      <view class="oh1 flex_1 ">用户密码：{{mima}}</view>
     </view>
   </view>
   

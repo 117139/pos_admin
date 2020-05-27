@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    btnkg:0,
     id: '',
     uname: '',
     utel:'',
@@ -23,8 +24,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    console.log(that.options)
-    if (that.options.id){
+    if (that.options.id) {
       that.setData({
         id: that.options.id
       })
@@ -34,7 +34,8 @@ Page({
         title: that.options.name,
       })
     }
-
+    that.getdata()
+    that.getdatamsg()
 
     
   },
@@ -114,7 +115,113 @@ Page({
       utel: e.detail.value
     })
   },
+  getdata() {
+    var that = this
+    var data = {
+      token: wx.getStorageSync('loginmsg').token,
+      id: that.data.id
 
+    }
+    var jkurl = app.IPurl + '/api/dire/zd_dire_show'
+    data = {
+      token: wx.getStorageSync('loginmsg').token,
+      id: that.data.id
+    }
+
+
+    wx.request({
+      url: jkurl,
+      data: data,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'POST',
+      success(res) {
+        console.log(res.data)
+        if (res.data.code == 1) {
+          console.log('获取成功')
+          that.setData({
+            datas: res.data.data
+          })
+
+        } else {
+          if (res.data.msg) {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '加载失败'
+            })
+          }
+        }
+
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '登录失败'
+        })
+      }
+    })
+  },
+  getdatamsg() {
+    var that = this
+    var data = {
+      token: wx.getStorageSync('loginmsg').token,
+      id: that.data.id
+
+    }
+    var jkurl = app.IPurl + '/api/deal/deal_edit'
+    data = {
+      token: wx.getStorageSync('loginmsg').token,
+      id: that.data.id
+    }
+
+
+    wx.request({
+      url: jkurl,
+      data: data,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'POST',
+      success(res) {
+        console.log(res.data)
+        if (res.data.code == 1) {
+          console.log('获取成功')
+          that.setData({
+            uname: res.data.data.contacts,
+            utel: res.data.data.contacts_phone
+          })
+
+        } else {
+          if (res.data.msg) {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '加载失败'
+            })
+          }
+        }
+
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '登录失败'
+        })
+      }
+    })
+  },
   sub(){
     var that =this
     var id = that.data.id
@@ -139,6 +246,68 @@ Page({
     console.log(id)
     console.log(uname)
     console.log(utel)
+    var data = {
+      token: wx.getStorageSync('loginmsg').token,
+      id: id,
+      contacts: uname,
+      contacts_phone: utel,
+
+    }
+    var jkurl = app.IPurl + '/api/deal/update'
+    if (that.data.btnkg == 0) {
+      that.setData({
+        btnkg: 1
+      })
+    } else {
+      return
+    }
+    wx.request({
+      url: jkurl,
+      data: data,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'post',
+      success(res) {
+        console.log(res.data)
+        if (res.data.code == 1) {  //数据为空
+          wx.showToast({
+            icon: 'none',
+            title: '操作成功'
+          })
+          
+          // setTimeout(function () {
+          //   wx.navigateBack()
+          // }, 1000)
+        } else {
+          if (res.data.msg) {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg
+            })
+
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '操作失败'
+            })
+          }
+        }
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '操作失败'
+        })
+      },
+      complete() {
+        that.setData({
+          btnkg: 0
+        })
+       
+      }
+    })
   },
   bindPickerChange1: function (e) {
     console.log(e.currentTarget.dataset.ptype)

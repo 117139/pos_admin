@@ -8,14 +8,13 @@
       <input type="text" placeholder="搜索商户"  confirm-type="search" bindconfirm="sub_ss"/>
     </view>
   </view>
-  
   <view wx:if="{{data_list.length==0}}" class="zanwu">暂无数据</view>
   <view class="li_box" wx:for="{{data_list}}" wx:for-item="item" bindtap="jump" data-id="{{item.id}}" data-url="{{'/pages/details/details?type='+type+'&indextype='+indextype+'&id='+item.id}}">
     <view>
-      <view class="li_tit oh1">{{item.dire.com_tenant_name}}</view>
-      <view class="li_h2 oh1" wx:if="{{item.dire.app.length>0}}">终端号：{{item.dire.app[0].app_code}}</view>
-      <view class="li_h2 oh1">商户编号：{{item.dire.com_tenant_code}}</view>
-      <view class="li_add oh3">商户地址：{{item.dire.address}}</view>
+      <view class="li_tit oh1">{{item.com_tenant_name}}</view>
+      <view class="li_h2 oh1" wx:if="{{item.app.length>0}}">终端号：{{item.app.app_code}}</view>
+      <view class="li_h2 oh1">商户编号：{{item.com_tenant_code}}</view>
+      <view class="li_add oh3">商户地址：{{item.address}}</view>
     </view>
     <view class="li_go">
       <image src="/static/images/li_go.jpg"></image>

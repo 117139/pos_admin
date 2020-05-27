@@ -1,20 +1,153 @@
 <!--pages/gd_yc/gd_yc.wxml-->
 <view>
-  <picker class="w100" bindchange="bindPickerChange" value="{{index}}" range="{{yc_data}}" range-key='name'>
+  <picker class="w100" bindchange="bindPickerChange" value="{{index}}" range="{{yc_data}}" range-key='title'>
     <view class="cz_li">
-      <view class="cz_tit c5099f7">异常类型:{{yc_data[index].name}}</view>
+      <view class="cz_tit c5099f7">异常类型:{{yc_data[index].title}}</view>
       <view>
         <text class="iconfont icon-next fz28"></text>
       </view>
     </view>
   </picker>
-  <picker class="w100" bindchange="bindPicker1Change" value="{{index1}}" range="{{jb_data}}" range-key='name'>
+  <picker class="w100" bindchange="bindPicker1Change" value="{{index1}}" range="{{jb_data}}" range-key='title'>
     <view class="cz_li">
-      <view class="cz_tit c5099f7">经办方式:{{jb_data[index1].name}}</view>
+      <view class="cz_tit c5099f7">经办方式:{{jb_data[index1].title}}</view>
       <view>
         <text class="iconfont icon-next fz28"></text>
       </view>
     </view>
   </picker>
+  <view class="cz_li">
+    <view class="cz_tit c5099f7">异常原因:</view>
+    <view>
+
+    </view>
+  </view>
+  <textarea class="yc_yy" placeholder="请输入异常原因" bindinput="get_val"></textarea>
+  <view class="xq_box3">
+    <view class="xq_title">
+      <image src="/static/images/4_06.jpg"></image>工单耗时、配件
+    </view>
+    <view class="pj_li">
+      <view class="pj_tit">配件1</view>
+      <picker class="flex_1" bindchange="bindPickerChange1" data-ptype="1" value="{{indexp1}}" range="{{pj_data}}" range-key='title'>
+        <view class="pj_name">
+          <view class="cz_tit">{{pj_data[indexp1].title?pj_data[indexp1].title:'无'}}</view>
+          <view>
+            <text class="iconfont icon-next-copy fz28"></text>
+          </view>
+        </view>
+      </picker>
+      <view class="pj_num">数量
+        <input value="{{num1}}" placeholder="0" bindinput="get_val_li" data-ptype="1"></input>
+      </view>
+    </view>
+    <view class="pj_li">
+      <view class="pj_tit">配件2</view>
+      <picker class="flex_1" bindchange="bindPickerChange1" data-ptype="2" value="{{indexp2}}" range="{{pj_data}}" range-key='title'>
+        <view class="pj_name">
+          <view class="cz_tit">{{pj_data[indexp2].title?pj_data[indexp2].title:'无'}}</view>
+          <view>
+            <text class="iconfont icon-next-copy fz28"></text>
+          </view>
+        </view>
+      </picker>
+      <view class="pj_num">数量
+        <input value="{{num2}}" placeholder="0" bindinput="get_val_li" data-ptype="2"></input>
+      </view>
+    </view>
+    <view class="pj_li">
+      <view class="pj_tit">配件3</view>
+      <picker class="flex_1" bindchange="bindPickerChange1" data-ptype="3" value="{{indexp3}}" range="{{pj_data}}" range-key='title'>
+        <view class="pj_name">
+          <view class="cz_tit">{{pj_data[indexp3].title?pj_data[indexp3].title:'无'}}</view>
+          <view>
+            <text class="iconfont icon-next-copy fz28"></text>
+          </view>
+        </view>
+      </picker>
+      <view class="pj_num">数量
+        <input value="{{num3}}" placeholder="0" bindinput="get_val_li" data-ptype="3"></input>
+      </view>
+    </view>
+    <view class="pj_li">
+      <view class="pj_tit">配件4</view>
+      <picker class="flex_1" bindchange="bindPickerChange1" data-ptype="4" value="{{indexp4}}" range="{{pj_data}}" range-key='title'>
+        <view class="pj_name">
+          <view class="cz_tit">{{pj_data[indexp4].title?pj_data[indexp4].title:'无'}}</view>
+          <view>
+            <text class="iconfont icon-next-copy fz28"></text>
+          </view>
+        </view>
+      </picker>
+      <view class="pj_num">数量
+        <input value="{{num4}}" placeholder="0" bindinput="get_val_li" data-ptype="4"></input>
+      </view>
+    </view>
+    <view class="pj_li">
+      <view class="pj_tit">配件5</view>
+      <picker class="flex_1" bindchange="bindPickerChange1" data-ptype="5" range="{{pj_data}}" range-key='title'>
+        <view class="pj_name">
+          <view class="cz_tit">{{pj_data[indexp5].title?pj_data[indexp5].title:'无'}}</view>
+          <view>
+            <text class="iconfont icon-next-copy fz28"></text>
+          </view>
+        </view>
+      </picker>
+      <view class="pj_num">数量
+        <input value="{{num5}}" placeholder="0" bindinput="get_val_li" data-ptype="5"></input>
+      </view>
+    </view>
+  </view>
+  
+  <view  wx:if="{{indextype==1}}" class="xq_box3">
+    <view class="xq_title">
+      <image src="/static/images/4_06.jpg"></image>巡查情况
+    </view>
+    <checkbox-group bindchange="groupchange" data-type="1">
+      <label class="checkbox ">
+        <checkbox value="cb" checked="true"/>正常经营
+      </label>
+    </checkbox-group>
+    <checkbox-group bindchange="groupchange" data-type="2">
+    <label class="checkbox ">
+      <checkbox value="cb" checked="true"/>商户机具在指定地点使用
+    </label>
+    </checkbox-group>
+    <checkbox-group bindchange="groupchange" data-type="3">
+    <label class="checkbox ">
+      <checkbox value="cb" />商户机具存在一柜多机情况
+    </label>
+    </checkbox-group>
+    <checkbox-group bindchange="groupchange" data-type="4">
+    <label class="checkbox ">
+      <checkbox value="cb" checked="true"/>收银操作熟练
+    </label>
+    </checkbox-group>
+    <checkbox-group bindchange="groupchange" data-type="5">
+    <label class="checkbox ">
+      <checkbox value="cb" />存在虚假、欺诈和套现行为
+    </label> 
+    </checkbox-group>
+    <checkbox-group bindchange="groupchange" data-type="6">
+    <label class="checkbox ">
+      <checkbox value="cb" checked="true"/>商户MCC与经营一致
+    </label>
+    </checkbox-group>
+    <checkbox-group bindchange="groupchange" data-type="7">
+    <label class="checkbox ">
+      <checkbox value="cb" checked="true"/>单据按要求保存
+    </label>
+    </checkbox-group>
+    <checkbox-group bindchange="groupchange" data-type="8">
+    <label class="checkbox ">
+      <checkbox value="cb" checked="true"/>收银员经过培训上岗
+    </label>
+    </checkbox-group>
+    <checkbox-group bindchange="groupchange" data-type="9">
+    <label class="checkbox ">
+      <checkbox value="cb" checked="true"/>POS使用正常
+    </label>
+    </checkbox-group>
+  </view>
   <button class="sub_btn" bindtap="sub">提交</button>
 </view>

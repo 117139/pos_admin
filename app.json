@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/list_zd/list_zd",
+    "pages/caiwu1/caiwu",
     "pages/caiwu/caiwu",
     "pages/login_tel/login_tel",
     "pages/list_new/list_new",
@@ -8,6 +10,7 @@
     "pages/shanghu_set/shanghu_set",
     "pages/kaitong/kaitong",
     "pages/list/list",
+    "pages/list1/list",
     "pages/zuobiao/zuobiao",
     "pages/details/details",
     "pages/gd_upimg/gd_upimg",

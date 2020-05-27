@@ -286,6 +286,7 @@ Page({
 						duration: 1000,
 						icon:'none'
 					});
+          wx.setStorageSync('user_type', that.data.yc_data[that.data.index].type)
 					setTimeout(function() {
 						that.setData({
 							btnkg:0

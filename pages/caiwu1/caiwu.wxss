@@ -39,16 +39,33 @@
 	justify-content: space-between;
 	background-color: #fff;
 	margin-bottom: 2rpx;
-  border-bottom: 1px solid #ddd;
+  /* border-bottom: 1px solid #ddd; */
 }
 .cw1{
 	display: flex;
 	/* flex-direction: column; */
 	justify-content: space-between;
+  align-items: center;
+  height: 100rpx;
+  border-bottom: 1px solid #eee;
 }
 .cw2{
 	align-items: flex-end;
 }
 .cee1111{
 	color: #e11;
+}
+.cz_btn{
+  /* position: fixed;
+  bottom: 0; */
+  margin-top: 100rpx;
+  z-index: 999;
+  width: 100%;
+  height: 100rpx;
+  font-size: 28rpx;
+  color: #fff;
+  background:#1AAD19;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
 }

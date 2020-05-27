@@ -11,21 +11,22 @@ Page({
       {
         name: '开通商户账号',
         img: '/static/images/3_03.jpg',
-        url: '/pages/list/list?type=200',
+        url: '/pages/list1/list?type=200',
         sftype: 1,
         type: '2'
       },
       {
         name: '坐标手机',
         img: '/static/images/3_05.jpg',
-        url: '/pages/list/list?type=201',
+        // url: '/pages/list/list?indextype=2&type=2',
+        url: '/pages/list1/list?indextype=0&type=0',
         sftype: 1,
         type: '2'
       },
       {
         name: '查看商户详情',
         img: '/static/images/3_09.jpg',
-        url: '/pages/list/list',
+        url: '/pages/list1/list',
         sftype: 1,
         type: '2'
       },
@@ -38,14 +39,14 @@ Page({
       {
         name: '修改商户信息',
         img: '/static/images/3_13.jpg',
-        url: '/pages/list/list?type=204',
+        url: '/pages/list1/list?type=204',
         sftype: 1,
         type: '2'
       },
       {
         name: '新增维护单',
         img: '/static/images/3_14.jpg',
-        url: '/pages/list_new/list_new',
+        url: '/pages/list/list?type=205',
         sftype: 1,
         type: '2'
       },

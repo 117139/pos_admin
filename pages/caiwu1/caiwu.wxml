@@ -1,0 +1,28 @@
+<!--pages/caiwu/caiwu.wxml-->
+<import src="/utils/htmlStatus/index.wxml" />
+<wxs src="../../utils/filter.wxs" module="filter" />
+<view class="container">
+	<view class="w100">
+		<view class="cw_list">
+			<view class="cw1">
+				<view class="fz28 c3">押金</view>
+				<view  class="fz24 c9">{{cw_data.shiji_yajin_price}}</view>
+			</view>
+			<view class="cw1">
+				<view class="fz28 c3">通讯费</view>
+				<view  class="fz24 c9">{{cw_data.shiji_tongxun_price}}</view>
+			</view>
+			<view class="cw1">
+				<view class="fz28 c3">租机费</view>
+				<view  class="fz24 c9">{{cw_data.shiji_zuji_price}}</view>
+			</view>
+			<view class="cw1">
+				<view class="fz28 c3">购机费</view>
+				<view  class="fz24 c9">{{cw_data.shiji_gouji_price}}</view>
+			</view>
+      <view  wx:if="{{message!=1}}" class="cz_btn" bindtap="sub">提交</view>
+		</view>
+    
+    <template is="htmlStatus" data="{{...htmlStatus}}" />
+	</view>
+</view>
