@@ -71,3 +71,6 @@ font-size: 22rpx;
 .sousuo_box text{
   margin-right: 20rpx;
 }
+.sousuo_box input{
+  width: 100%;
+}

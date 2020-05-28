@@ -24,7 +24,7 @@
   "window": {
     "enablePullDownRefresh": true,
     "backgroundColor": "#f4f4f4",
-    "backgroundTextStyle": "dark",
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#101426",
     "navigationBarTitleText": "pos机进销存管理系统",
     "navigationBarTextStyle": "white"

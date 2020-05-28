@@ -4,6 +4,7 @@ var qqmapsdk;
 var location = "";
 var config = require('../../config.js');
 var htmlStatus = require('../../utils/htmlStatus/index.js')
+var http = require('../../utils/httputils.js');   //请求
 const app = getApp()
 Page({
 
@@ -127,8 +128,45 @@ Page({
       token: wx.getStorageSync('loginmsg').token,
       id: that.data.id
     }
+    /*var prams = {
+      token: wx.getStorageSync('loginmsg').token,
+      id: that.data.id
+    }
+    http.postRequest("/api/dire/zd_dire_show", prams,
+      function (res) {
+        if (res.data.code == 1) {
+          console.log('获取成功')
+          that.setData({
+            datas: res.data.data
+          })
 
-
+        } else {
+          if (res.data.data.msg) {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.data.msg
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '加载失败'
+            })
+          }
+        }
+      },
+      function (err) {
+        if (err.data.data.msg) {
+          wx.showToast({
+            icon: 'none',
+            title: err.data.data.msg
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '加载失败'
+          })
+        }
+      })*/
     wx.request({
       url: jkurl,
       data: data,
@@ -146,10 +184,10 @@ Page({
           })
 
         } else {
-          if (res.data.msg) {
+          if (res.data.data.msg) {
             wx.showToast({
               icon: 'none',
-              title: res.data.msg
+              title: res.data.data.msg
             })
           } else {
             wx.showToast({
@@ -163,7 +201,7 @@ Page({
       fail() {
         wx.showToast({
           icon: 'none',
-          title: '登录失败'
+          title: '加载失败'
         })
       }
     })

@@ -26,7 +26,7 @@ Page({
       {
         name: '查看商户详情',
         img: '/static/images/3_09.jpg',
-        url: '/pages/list1/list',
+        url: '/pages/list1/list?indextype=0&type=0',
         sftype: 1,
         type: '2'
       },
