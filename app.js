@@ -48,11 +48,11 @@ App({
 		                      console.log('登录成功')
                           wx.setStorageSync('loginmsg', res.data.data)
                           wx.setStorageSync('user_type', res.data.type)
-                          if (res.data.type==0){
-                            wx.navigateTo({
-                              url: '/pages/login_tel/login_tel',
-                            })
-                          }
+                          // if (res.data.type==0){
+                          //   wx.navigateTo({
+                          //     url: '/pages/login_tel/login_tel',
+                          //   })
+                          // }
                           
 		                    } else {
 		                      wx.removeStorageSync('userInfo')
@@ -146,11 +146,24 @@ App({
 		userInfo: null
 	},
 	jump(e) {
-		console.log(e)
+    console.log(e)
     if (!wx.getStorageSync('userInfo')) {
       wx.navigateTo({
         url: '/pages/login/login',
       })
+      return
+    }
+    if (!wx.getStorageSync('loginmsg'.type==0)) {
+      wx.showToast({
+        icon:'none',
+        title: '请先绑定账号',
+      })
+      setTimeout(function (){
+        wx.navigateTo({
+          url: '/pages/login_tel/login_tel',
+        })
+      },1000)
+     
       return
     }
     // if (e.currentTarget.dataset.quanxian){

@@ -66,11 +66,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (wx.getStorageSync('user_type')) {
+    // if (wx.getStorageSync('user_type')) {
       this.setData({
-        h_type: wx.getStorageSync('user_type')
+        h_type: wx.getStorageSync('user_type') ? wx.getStorageSync('user_type'):0
       })
-    }
+    // }
   },
   retry() { 
     this.setData({
