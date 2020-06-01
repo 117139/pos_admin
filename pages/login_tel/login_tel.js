@@ -286,6 +286,11 @@ Page({
 						duration: 1000,
 						icon:'none'
 					});
+          if (res.data.data){
+            wx.setStorageSync('loginmsg', res.data.data)
+          }else{
+            app.dologin()
+          }
           wx.setStorageSync('user_type', that.data.yc_data[that.data.index].type)
 					setTimeout(function() {
 						that.setData({

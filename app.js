@@ -153,7 +153,7 @@ App({
       })
       return
     }
-    if (!wx.getStorageSync('loginmsg'.type==0)) {
+    if (wx.getStorageSync('loginmsg').type == 0) {
       wx.showToast({
         icon:'none',
         title: '请先绑定账号',
