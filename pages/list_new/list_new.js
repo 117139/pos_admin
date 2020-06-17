@@ -243,10 +243,10 @@ Page({
       return
 
     }
-    if (utel == '' || !(/^1\d{10}$/.test(utel))) {
+    if (utel == '') {
       wx.showToast({
         icon: 'none',
-        title: '手机号有误'
+        title: '手机不能为空'
       })
       return
     }
@@ -262,14 +262,14 @@ Page({
       tel: that.data.utel,
       pone: that.data.uphone,
       gong_desc: that.data.ubeizhu,
-      pei1:that.data.pj_data[that.data.indexp1].id,
-      pei2:that.data.pj_data[that.data.indexp2].id,
-      hao1: that.data.hao_data[that.data.indexp3].id,
-      hao2: that.data.hao_data[that.data.indexp4].id,
-      pei_num1: that.data.num1,
-      pei_num2: that.data.num2,
-      hao_num1: that.data.num3,
-      hao_num2: that.data.num4,
+      pei1: that.data.pj_data.length>0 ? that.data.pj_data[that.data.indexp1].id:'',
+      pei2: that.data.pj_data.length > 0 ? that.data.pj_data[that.data.indexp2].id : '',
+      hao1: that.data.hao_data.length > 0 ? that.data.hao_data[that.data.indexp3].id : '',
+      hao2: that.data.hao_data.length > 0 ? that.data.hao_data[that.data.indexp4].id : '',
+      pei_num1: that.data.pj_data.length > 0 ?that.data.num1:'',
+      pei_num2: that.data.pj_data.length > 0 ? that.data.num2 : '',
+      hao_num1: that.data.hao_data.length > 0 ? that.data.num3 : '',
+      hao_num2: that.data.hao_data.length > 0 ? that.data.num4 : '',
       id:that.data.id,
       password: that.data.mima,
 

@@ -23,6 +23,21 @@
   color: #9aaec1;
   font-size: 27rpx;
 margin-bottom: 30rpx;
+position: relative;
+}
+.index_li .jb{
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ff0000;
+  color: #fff;
+  font-size: 24rpx;
+  position: absolute;
+  top: 35rpx;
+  right: 70rpx;
+  border-radius: 50%;
 }
 .index_li image{
   width: 130rpx;

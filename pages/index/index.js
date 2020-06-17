@@ -11,6 +11,7 @@ Page({
     homeSeek: '',
     homeTeacher: '',
     homeVideo: '',
+    index_num:'',
     index_li:[
       // {
       //   name: '未达标商户',
@@ -114,7 +115,7 @@ Page({
       {
         name: '应收列表',
         img: '/static/images/2_18.jpg',
-        url: '/pages/list1/list',
+        url: '/pages/list2/list',
         indextype: 6,
         sftype: 1,
         type: '2'
@@ -150,11 +151,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that =this
     if (wx.getStorageSync('user_type')){
       this.setData({
         h_type: wx.getStorageSync('user_type')
       })
     }
+    setTimeout(function (){
+      that.getdata()
+    },1000)
   },
 
   /**
@@ -193,32 +198,45 @@ Page({
 
   },
   getdata(){
+    if (!wx.getStorageSync('userInfo')) {
+     
+      return
+    }
+    if (wx.getStorageSync('loginmsg').type == 0) {
+      
+      return
+    }
     ///api/homeIndex
     var that = this
-    const htmlStatus1 = htmlStatus.default(that)
+    
     wx.request({
-      url: app.IPurl + '/api/homeIndex',
-      data: {},
+      url: app.IPurl + '/api/index/index',
+      data: {
+        token: wx.getStorageSync('loginmsg').token,
+      },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       dataType: 'json',
-      method: 'get',
+      method: 'post',
       success(res) {
         // 停止下拉动作
         wx.stopPullDownRefresh();
-        htmlStatus1.finish()
+        
         console.log(res.data)
         if (res.data.code == 1) {  //数据为空
-
+          var index_li=that.data.index_li
+          var inums = res.data.data
+          index_li[0].inum = inums.wait_pat_app
+          index_li[2].inum = inums.wait_dis_app
+          index_li[4].inum = inums.wait_mai_app
+          index_li[6].inum = inums.wait_cha_h_app
+          index_li[8].inum = inums.wait_cha_c_app
           that.setData({
-            banner: res.data.data.homeBanner,
-            homeSeek: res.data.data.homeSeek,
-            homeTeacher: res.data.data.homeTeacher,
-            homeVideo: res.data.data.homeVideo,
+            index_li: index_li
           })
         } else {
-          htmlStatus1.error()
+          
           wx.showToast({
             icon: 'none',
             title: '加载失败'

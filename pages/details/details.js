@@ -67,10 +67,10 @@ Page({
     console.log(options)
     if (options.address != null && options.address != '') {
       //设置变量 address 的值
-      this.setData({
-        address: options.address,
-        location: options.location
-      });
+      // this.setData({
+      //   address: options.address,
+      //   location: options.location
+      // });
     } else {
       // 实例化API核心类
       qqmapsdk = new QQMapWX({
@@ -85,7 +85,7 @@ Page({
           console.log(res.result.address);
           that.setData({
             // address: res.result.address,
-            location: res.result.location,
+            // location: res.result.location,
             activity_location: res.result.address
           });
           // console.log(that.data.address);
@@ -115,19 +115,33 @@ Page({
     var that = this;
 
     location = getApp().data.activity_location;
+    console.log(location)
+   
     if (location != "") {
       that.setData({
         activity_location: location
+
         // activity_location: this.data.address//这个没用，可能onshow最先获取不到onLoad值
       });
     }
     let pages = getCurrentPages();
+    console.log(pages)
     let currPage = pages[pages.length - 1];
     if (currPage.data.addresschose) {
-      that.set_add(currPage.data.addresschose)
+      
+      var zb = {
+        latitude: currPage.data.latitude,
+        longitude: currPage.data.longitude
+      }
       this.setData({//将携带的参数赋值
-        activity_location: currPage.data.addresschose
+        activity_location: currPage.data.addresschose,
+        location:zb
       });
+      setTimeout(function (){
+        var address_new = currPage.data.addresschose
+        currPage.data.addresschose=''
+        that.set_add(address_new)
+      },100)
     }
     wx.getSetting({
       success: (res) => {
@@ -387,9 +401,9 @@ Page({
     let key = 'WOUBZ-TTHHR-OMAWI-WC5F6-XPB5H-CHFRU';  //使用在腾讯位置服务申请的key
     let referer = 'pos机进销存管理系统';   //调用插件的app的名称
     let endPoint = JSON.stringify({  //终点
-      'name': that.data.activity_location,
-      'latitude': that.data.location.lat,
-      'longitude': that.data.location.lng
+      'name': that.data.datas.address,
+      'latitude': that.data.location.latitude,
+      'longitude': that.data.location.longitude
     });
     console.log(endPoint)
     wx.navigateTo({
@@ -541,8 +555,13 @@ Page({
         console.log(res.data)
         if (res.data.code == 1) {
           console.log('获取成功')
+          var zb = {
+            latitude: res.data.data.coordinate1,
+            longitude: res.data.data.coordinate2
+          }
          that.setData({
-           datas:res.data.data
+           datas:res.data.data,
+           location: zb
          })
           
         } else {
@@ -574,7 +593,8 @@ Page({
       token: wx.getStorageSync('loginmsg').token,
       id: that.data.id,
       address: add,
-
+      coordinate1: that.data.location.latitude,
+      coordinate2: that.data.location.longitude
     }
     var jkurl = app.IPurl + '/api/dire/zd_dire_up'
     if (that.data.indextype == 1) { //巡机单
@@ -635,5 +655,20 @@ Page({
         // })
       }
     })
-  }
+  },
+  pveimg(e) {
+    var curr = e.currentTarget.dataset.src
+    var urls = e.currentTarget.dataset.array
+    let urls1 = []
+    if (urls) {
+      urls1 = urls
+
+    } else {
+      urls1[0] = curr
+    }
+    wx.previewImage({
+      current: curr, // 当前显示图片的http链接
+      urls: urls1 // 需要预览的图片http链接列表
+    })
+  },
 })

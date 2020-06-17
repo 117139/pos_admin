@@ -95,7 +95,7 @@
       <view class="xd"></view>
       <view class=" flex_1 dis_flex aic">
         <view  class="set_tit">备注： </view>
-        <view class="zb_v"  ><input value='{{ubeizhu}}' type="number" bindinput="get_val3" placeholder="请输入备注"></input></view>
+        <view class="zb_v"  ><input value='{{ubeizhu}}' type="text" bindinput="get_val3" placeholder="请输入备注"></input></view>
       </view>
     </view>
     

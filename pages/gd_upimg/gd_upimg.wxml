@@ -12,19 +12,30 @@
 
       </view>
     </view> -->
-    <view class="imgbox mb20">
+    <view class="imgbox mb20" wx:if="{{s_type==0}}">
       <!-- <view class="addimg1" wx:for="{{imgb}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" data-idx="{{idx}}" bindtap="imgdel">
         <image src="{{filter.imgIP(item)}}" data-src="{{filter.imgIP(item)}}" mode="aspectFill"></image>
         <image src="{{item}}" data-src="{{item}}" mode="aspectFill"></image>
       </view> -->
 
-      <view wx:if="{{s_type==0}}" class="addimg" bindtap="scpic">
+      <view  class="addimg" wx:for="{{imgb}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" bindtap="imgdel">
 
-        <image src="{{imgb?filter.imgIP(imgb):'../../static/images/upimg1.jpg'}}"  mode="aspectFill"></image>
+        <image  src="{{filter.imgIP(item)}}"  mode="aspectFill"></image>
       </view>
-      <view wx:if="{{s_type==1}}" class="addimg" bindtap="scpic">
+      <view wx:if="{{imgb.length<9}}" class="addimg" bindtap="scpic">
 
-        <image src="{{imgb1?filter.imgIP(imgb1):'../../static/images/upimg1.jpg'}}"  mode="aspectFill"></image>
+        <image src="../../static/images/upimg1.jpg"  mode="aspectFill"></image>
+      </view>
+     
+    </view>
+    <view class="imgbox mb20" wx:if="{{s_type==1}}">
+      
+       <view  class="addimg" wx:for="{{imgb1}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" bindtap="imgdel1">
+
+        <image  src="{{filter.imgIP(item)}}"  mode="aspectFill"></image>
+      </view>
+      <view wx:if="{{imgb1.length<9}}" class="addimg" bindtap="scpic">
+          <image  src="../../static/images/upimg1.jpg"  mode="aspectFill"></image>
       </view>
     </view>
 

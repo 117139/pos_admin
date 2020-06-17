@@ -4,7 +4,15 @@
 <view class="container">
   <template is="htmlStatus" data="{{...htmlStatus}}" />
   <view class="xq_box1" style="background-image:url('/static/images/tx.jpg')">
-    <image class="xq_box1_bg" src="{{filter.imgIP(datas.menmian)}}" mode="aspectFill"></image>
+    <swiper wx:if="{{datas.menmian}}" class="xq_box1_bg" indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
+      <block wx:for="{{filter.getgimgarr(datas.menmian)}}" wx:for-index="idx" wx:for-item="item">
+        <swiper-item>
+          <image class="xq_box1_bg" src="{{filter.getgimg(item)}}" mode="aspectFill"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- <image class="xq_box1_bg" src="{{filter.getgimg(datas.menmian)}}" mode="aspectFill"></image> -->
     <view class="xq_box1_msg">
       <view class="xq_add">
         <view class="oh2">
@@ -30,7 +38,18 @@
       <button wx:else open-type="openSetting" bindopensetting='handler'>启用导航</button>
     </view>
   </view>
-
+  <view class="order_imgs">
+    <view wx:if="{{datas.menmian}}">门头照</view>
+    <!-- <image wx:for="{{index_li}}" wx:for-item="item" src="item"></image> -->
+    <image wx:if="{{datas.menmian}}"
+      wx:for="{{filter.getgimgarr(datas.menmian)}}" wx:for-index="idx" wx:for-item="item"
+     src="{{filter.imgIP(item)}}" mode="aspectFill" data-src="{{filter.imgIP(item)}}" catchtap="pveimg"></image>
+    <view wx:if="{{datas.xiaopiao}}">小票</view>
+    <!-- <image wx:for="{{index_li}}" wx:for-item="item" src="item"></image> -->
+    <image wx:if="{{datas.xiaopiao}}"
+     wx:for="{{filter.getgimgarr(datas.xiaopiao)}}" wx:for-index="idx" wx:for-item="item"
+     src="{{filter.imgIP(item)}}" mode="aspectFill" data-src="{{filter.imgIP(item)}}" catchtap="pveimg"></image>
+  </view>
   <view class="xq_box3">
     <view class="xq_title">
       <image src="/static/images/4_06.jpg"></image>商品信息
@@ -207,5 +226,5 @@
       <view class="oh1 flex_1">Set机人员：{{item.set_man?item.set_man:'(无)'}}</view>
     </view>
   </view>
-  <view class="cz_btn" bindtap="sub">提交</view>
+  <!-- <view class="cz_btn" bindtap="sub">提交</view> -->
 </view>

@@ -8,8 +8,8 @@ Page({
   data: {
     btnkg:0,
     s_type:0,
-    imgb: '',
-    imgb1: '',
+    imgb: [],
+    imgb1: [],
 
 
     pj_data: [],
@@ -107,7 +107,6 @@ Page({
     })
   },
   imgdel(e) {
-    return
     var that = this
     console.log(e.currentTarget.dataset.idx)
     wx.showModal({
@@ -127,10 +126,30 @@ Page({
     })
 
   },
+  imgdel1(e) {
+    var that = this
+    console.log(e.currentTarget.dataset.idx)
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除这张图片吗',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          that.data.imgb1.splice(e.currentTarget.dataset.idx, 1)
+          that.setData({
+            imgb1: that.data.imgb1
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+
+  },
   scpic() {
     var that = this
     wx.chooseImage({
-      count: 1,
+      count: 9,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success(res) {
@@ -170,27 +189,38 @@ Page({
         // console.log(res.data)
         var ndata = JSON.parse(res.data)
         if (ndata.code == 1) {
-          console.log(imgs[i], i, ndata.url)
-          var newdata = that.data.imgb
+          console.log(imgs[i], i, ndata.data)
+          var newdata
+          if (that.data.s_type == 0) {
+            newdata = that.data.imgb
+          }else{
+            newdata = that.data.imgb1
+          }
           console.log(i)
-          // newdata.push(ndata.url)
+          newdata.push(ndata.data)
           if(that.data.s_type==0){
             that.setData({
-              imgb: ndata.data
+              imgb: newdata
             })
+            var news1 = that.data.imgb.length
+            if (news1 < 9) {
+              i++
+              that.upimg(imgs, i)
+            }
           }else{
             that.setData({
-              imgb1: ndata.data
+              imgb1: newdata
             })
+            var news1 = that.data.imgb1.length
+            if (news1 < 9) {
+              i++
+              that.upimg(imgs, i)
+            }
           }
          
           // i++
           // that.upimg(imgs, i)
-          // var news1 = that.data.imgb.length
-          // if (news1 < 9) {
-          //   i++
-          //   that.upimg(imgs, i)
-          // }
+         
         } else {
           wx.showToast({
             icon: "none",
@@ -322,8 +352,8 @@ Page({
       token: wx.getStorageSync('loginmsg').token,
       id: that.data.id,
       type: 1,
-      menmian: that.data.imgb,
-      xiaopiao:that.data.imgb1,
+      menmian: that.data.imgb.join(','),
+      xiaopiao: that.data.imgb1.join(','),
       non_1: that.data.pj_data[that.data.indexp1].id,
       non_2: that.data.pj_data[that.data.indexp2].id,
       non_3: that.data.pj_data[that.data.indexp3].id,

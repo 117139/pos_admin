@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/list2/list",
     "pages/list_zd/list_zd",
     "pages/caiwu1/caiwu",
     "pages/caiwu/caiwu",

@@ -57,10 +57,17 @@ App({
 		                    } else {
 		                      wx.removeStorageSync('userInfo')
 		                      wx.removeStorageSync('tokenstr')
-		                      wx.showToast({
-		                        icon: 'none',
-		                        title: '登录失败',
-		                      })
+                          if (res.data.msg) {
+                            wx.showToast({
+                              icon: 'none',
+                              title: res.data.msg,
+                            })
+                          } else {
+                            wx.showToast({
+                              icon: 'none',
+                              title: '登录失败',
+                            })
+                          }
 		                    }
 		
 		                  },
@@ -114,6 +121,7 @@ App({
                 wx.navigateTo({
                   url: '/pages/login_tel/login_tel',
                 })
+                return
               }
               if (type == 'shouquan') {
                 wx.navigateBack()
@@ -124,10 +132,17 @@ App({
             } else {
               wx.removeStorageSync('userInfo')
               wx.removeStorageSync('tokenstr')
-              wx.showToast({
-                icon: 'none',
-                title: '登录失败',
-              })
+              if(res.data.msg){
+                wx.showToast({
+                  icon: 'none',
+                  title: res.data.msg,
+                })
+              }else{
+                wx.showToast({
+                  icon: 'none',
+                  title: '登录失败',
+                })
+              }
             }
 
           },

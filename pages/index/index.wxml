@@ -5,6 +5,7 @@
 <template is="htmlStatus" data="{{...htmlStatus}}" />
 	<view class="index_box boxsiz">
     <view wx:if="{{h_type<=item.sftype}}" class="index_li" wx:for="{{index_li}}" wx:for-item="item" bindtap="jump" data-url="{{item.url+'?type='+item.type+'&indextype='+item.indextype+'&name='+item.name}}">
+    <text wx:if="{{item.inum>0}}" class="jb">{{item.inum}}</text>
       <image src="{{item.img}}"></image>
       <text>{{item.name}}</text>
     </view>

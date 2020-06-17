@@ -36,6 +36,7 @@ Page({
     var that = this;
     wx.chooseLocation({
       success: function (res) {
+        console.log(res)
         that.data.shownum++
         that.setData({
           shownum: that.data.shownum
@@ -50,6 +51,8 @@ Page({
 				prevPage.setData({
 				       //直接给上一个页面赋值
 				      addresschose: res.name,
+          latitude: res.latitude,
+          longitude: res.longitude,
 				});
 				 
 				wx.navigateBack({
