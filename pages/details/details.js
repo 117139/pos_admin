@@ -115,7 +115,8 @@ Page({
     var that = this;
 
     location = getApp().data.activity_location;
-    console.log(location)
+    console.log('118'+location)
+    console.log(getApp().data)
    
     if (location != "") {
       that.setData({
@@ -124,25 +125,31 @@ Page({
         // activity_location: this.data.address//这个没用，可能onshow最先获取不到onLoad值
       });
     }
-    let pages = getCurrentPages();
-    console.log(pages)
+    /*let pages = getCurrentPages();
+    // console.log('128' + pages)
+    // console.log('128' + JSON.stringify(pages))
     let currPage = pages[pages.length - 1];
-    if (currPage.data.addresschose) {
+    // console.log('128' + JSON.stringify(currPage))
+    console.log(app.data1)
+    // if (currPage.data.addresschose) {
+    if (app.data.activity_location) {
       
       var zb = {
-        latitude: currPage.data.latitude,
-        longitude: currPage.data.longitude
+        latitude: app.data.latitude,
+        longitude: app.data.longitude
       }
       this.setData({//将携带的参数赋值
-        activity_location: currPage.data.addresschose,
+        activity_location: app.data1.addresschose,
         location:zb
       });
       setTimeout(function (){
-        var address_new = currPage.data.addresschose
+        // var new_data = JSON.parse(JSON.stringify(currPage))
+        // console.log(new_data.data)
+        var address_new = app.data1.addresschose
         currPage.data.addresschose=''
         that.set_add(address_new)
       },100)
-    }
+    }*/
     wx.getSetting({
       success: (res) => {
         console.log(res.authSetting['scope.userLocation'])
@@ -424,9 +431,9 @@ Page({
     //   url: '/pages/addLocation/addLocation',
     // });
     this.moveToLocation()
-    wx.navigateTo({
-      url: "/pages/position/position"
-    });
+    // wx.navigateTo({
+    //   url: "/pages/position/position"
+    // });
   },
   //移动选点
   moveToLocation: function () {
@@ -434,9 +441,15 @@ Page({
     wx.chooseLocation({
       success: function (res) {
         console.log(res.name);
-        that.setData({
-          activity_location: res.name
-        })
+        var zb = {
+          latitude: res.latitude,
+          longitude: res.longitude
+        }
+        that.setData({//将携带的参数赋值
+          activity_location: res.name,
+          location: zb
+        });
+        that.set_add(res.name)
         //选择地点之后返回到原来页面
         // wx.navigateTo({
         //   url: "/pages/index/index?address="+res.name
@@ -589,6 +602,7 @@ Page({
   },
   set_add(add){
     var that=this
+    console.log('592' + add)
     var data = {
       token: wx.getStorageSync('loginmsg').token,
       id: that.data.id,
@@ -628,6 +642,7 @@ Page({
             icon: 'none',
             title: '操作成功'
           })
+          app.data1={}
           that.getdata()
         }  else {
           if(res.msg){

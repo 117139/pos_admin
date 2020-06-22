@@ -209,12 +209,6 @@ App({
       urls: urls1 // 需要预览的图片http链接列表
     })
   },
-  data: {
-    haveLocation: false,
-    activity_lat: -1,
-    activity_lng: -1,
-    activity_location: ""
-  },
 	call(e) {
 		// if (!wx.getStorageSync('userInfo')) {
 		// 	wx.navigateTo({
@@ -245,5 +239,6 @@ App({
 		activity_lat: -1,
 		activity_lng: -1,
 		activity_location: ""
-	}
+	},
+  data1:{}
 })
