@@ -4,12 +4,13 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
+		"nodeModules": true,
 		"autoAudits": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
@@ -20,12 +21,11 @@
 			"outputPath": ""
 		},
 		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"nodeModules": true
+		"scopeDataCheck": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.1",
-	"appid": "wxd1bca62ff44b2403",
+	"appid": "wx83b44bc41406ec34",
 	"projectname": "yuwuyuan",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},

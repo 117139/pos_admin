@@ -1,7 +1,7 @@
 //app.js
 App({
-	IPurl: 'http://pos.a.800123456.top/',
-	IPurl1:'http://pos.a.800123456.top/',
+	IPurl: 'https://e.jrpos.cn/',
+	IPurl1:'https://e.jrpos.cn/',
 	onLaunch: function() {
 		let that=this
 		wx.removeStorageSync('userInfo')

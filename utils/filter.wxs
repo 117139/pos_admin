@@ -1,4 +1,4 @@
-var imgip = 'http://pos.a.800123456.top/'
+var imgip = 'https://e.jrpos.cn/'
 // filter.wxs
 var dateFormat = function(date) {
   var dates = date.split('/');

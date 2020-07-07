@@ -2,7 +2,7 @@
 <view class="container">
 
   <view class="header">
-    <image src="/static/images/logo.png"></image>
+    <image src="/static/images/logo.jpg"></image>
   </view>
   <form class="w100" bindsubmit="formSubmit">
     <view class="srkbox mb60">

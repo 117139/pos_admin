@@ -75,19 +75,19 @@ Page({
       // 实例化API核心类
       qqmapsdk = new QQMapWX({
         //此key需要用户自己申请
-        key: 'FORBZ-KIPEF-WECJR-NFZKA-MREDV-FCF3O'
+        key: 'WOUBZ-TTHHR-OMAWI-WC5F6-XPB5H-CHFRU'
       });
       var that = this;
       // 调用接口
       qqmapsdk.reverseGeocoder({
         success: function (res) {
-          console.log(res);
-          console.log(res.result.address);
-          that.setData({
-            // address: res.result.address,
-            // location: res.result.location,
-            activity_location: res.result.address
-          });
+          // console.log(res);
+          // console.log(res.result.address);
+          // that.setData({
+          //   // address: res.result.address,
+          //   // location: res.result.location,
+          //   activity_location: res.result.address
+          // });
           // console.log(that.data.address);
         },
         fail: function (res) {
